@@ -27,11 +27,19 @@ for sequence in sequences:
 # Create SeqRecord objects for each sequence with unique identifiers
 records = [SeqRecord(Seq(seq), id=f"seq{i+1}") for i, seq in enumerate(aligned_sequences)]
 
+print(records)
+
 # Create a MultipleSeqAlignment object
 alignment = MultipleSeqAlignment(records)
 
+# models 
+models= ['identity', 'blastn', 'trans', 'benner6', 'benner22', 'benner74', 'blosum100', 'blosum30', 'blosum35', 'blosum40', 'blosum45', 'blosum50',
+    'blosum55', 'blosum60', 'blosum62', 'blosum65', 'blosum70', 'blosum75', 'blosum80', 'blosum85', 'blosum90', 'blosum95', 'feng', 'fitch', 'genetic', 
+    'gonnet', 'grant', 'ident', 'johnson', 'levin', 'mclach', 'miyata', 'nwsgappep', 'pam120', 'pam180', 'pam250', 'pam30', 'pam300', 'pam60', 'pam90', 
+    'rao', 'risler', 'structure']
+
 # Calculate distances
-calculator = DistanceCalculator('identity')
+calculator = DistanceCalculator(models[0])
 dm = calculator.get_distance(alignment)
 
 # Build the tree with branch lengths representing alignment differences
@@ -41,8 +49,11 @@ for clade in tree.find_clades():
     if clade.branch_length is not None:
         clade.branch_length *= (1 - clade.branch_length)
 
+#tree formats
+tree_formats = ['newick', 'nexus', 'phyloxml', 'nexml']
+
 # Save the tree in Newick format
-Phylo.write(tree, "Phylogenetic_Tree_Construction.nwk", "newick")
+Phylo.write(tree, "Phylogenetic_Tree_Construction.nwk", "newick")  
 
 # Visualize the tree
 fig, ax = plt.subplots(figsize=(8, 12))

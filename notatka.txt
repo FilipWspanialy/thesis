@@ -27,6 +27,8 @@ baza danych Fasta, dlaczego?
 8. Gotowy model w Pythonie
 
 ---------------------------------------------------------------------
+Snakemake?????????????
+
 Packages: 
 BioPython - matplotlib
 TreeSwift
@@ -42,13 +44,12 @@ MUSCLE
 MAFFT - pip install git+https://github.com/iTaxoTools/MAFFTpy.git
 T-Coffee
 PRANK
+algorytm Needlemana-Wunscha - golbalne, algorytm Smitha-Watermana - lokalne
 ---------------------------------------------------------------------
 PLAN programu
-
-dopasowanie sekwenscji: automatyczne i reczne, praca z wyrównanymi plikami, sekwencjami
-algorytm Needlemana-Wunscha - golbalne, algorytm Smitha-Watermana - lokalne
-
-
-model ewolucji molekularnej, substytucji nukleotydów
-
-budowa drzewa filogenetycznego
+1. Moduł pobierania i przechowywania danych, optymalne zarządzanie kolekcją sekwencji.
+2. Moduł dopasowania sekwencji - wrappery
+3. Model ewolucji molekularnej, substytucji nukleotydów => wybó wpływa na dzialaniae programu i jesgo efekt koncowy
+4. Konstrukcja drzewa filogenetycznego
+5. Moduł oceny drzewa – automatyzacja bootstrappingu i interpretacji wskaźników pewności.
+6. Interfejs użytkownika – najczęściej prosty CLI lub system webowy, umożliwiający wybór sekwencji, parametrów analizy oraz prezentację wyników.
