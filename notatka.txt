@@ -1,4 +1,10 @@
+Que?????
+
+dopasowanie sekwencji: czy mam uzyc zewnetrznego programu czy zaimplementowac algorytm juz znany
+
+---------------------------------------------------------------------
 PLAN sprawka
+
 1. filogeneza, można wsponieć o operacjach na dna, białkach, sekwencjach nukleotydowych z punktu widzenia przyrodniczego, naturalnego => filogenetyka oraz analizy
 
 2. znaczenie analiz filogentycznych
@@ -20,19 +26,29 @@ baza danych Fasta, dlaczego?
 
 8. Gotowy model w Pythonie
 
-
-
+---------------------------------------------------------------------
 Packages: 
 BioPython - matplotlib
 TreeSwift
 DendroPy
 ETE Toolkite
 
-
 BLAST
 edytor tekstu  do sekwencji MacVim, AliView i Jalview:
 
+Dopasowanie:
+Clustal W i Clustal Omega
+MUSCLE
+MAFFT - pip install git+https://github.com/iTaxoTools/MAFFTpy.git
+T-Coffee
+PRANK
+---------------------------------------------------------------------
+PLAN programu
 
-dopasowanie sekwenscji: automatyczne i reczne
+dopasowanie sekwenscji: automatyczne i reczne, praca z wyrównanymi plikami, sekwencjami
 algorytm Needlemana-Wunscha - golbalne, algorytm Smitha-Watermana - lokalne
+
+
 model ewolucji molekularnej, substytucji nukleotydów
+
+budowa drzewa filogenetycznego
