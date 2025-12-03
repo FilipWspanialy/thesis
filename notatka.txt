@@ -1,11 +1,11 @@
-Que?????
+TODO now
 
-dopasowanie sekwencji: czy mam uzyc zewnetrznego programu czy zaimplementowac algorytm juz znany
-
++ ideas
+compare with results from known programs
 ---------------------------------------------------------------------
 PLAN sprawka
 
-1. filogeneza, można wsponieć o operacjach na dna, białkach, sekwencjach nukleotydowych z punktu widzenia przyrodniczego, naturalnego => filogenetyka oraz analizy
+1. filogeneza, można wsponieć o operacjach na dna, białkach, sekwencjach nukleotydowych, kodonach z punktu widzenia przyrodniczego, naturalnego => filogenetyka oraz analizy
 
 2. znaczenie analiz filogentycznych
 
@@ -17,14 +17,14 @@ na czym polego takie wyrownianie sekwensji dna,
 a później porównanie, dopasowanie globalne czy lokalne
 algorytm Needlemana-Wunscha - golbalne, algorytm Smitha-Watermana - lokalne
 
-5. na co warto zwrócic uwagę przy wyborze metody, modelu
+5.czym jest model ewolucji molekularnej
 
-6. czym jest model ewolucji molekularnej
+6.  na co warto zwrócic uwagę przy wyborze metody, modelu jak to zachodzi
 
 7. Programowanie analiz filogenetycznych
 baza danych Fasta, dlaczego?
 
-8. Gotowy model w Pythonie
+8. Biblioteki w Pythonie, program
 
 ---------------------------------------------------------------------
 Snakemake?????????????
@@ -45,11 +45,13 @@ MAFFT - pip install git+https://github.com/iTaxoTools/MAFFTpy.git
 T-Coffee
 PRANK
 algorytm Needlemana-Wunscha - golbalne, algorytm Smitha-Watermana - lokalne
+
+iqtree
+algortym drzewa maximum likelihood
 ---------------------------------------------------------------------
 PLAN programu
-1. Moduł pobierania i przechowywania danych, optymalne zarządzanie kolekcją sekwencji.
-2. Moduł dopasowania sekwencji - wrappery
-3. Model ewolucji molekularnej, substytucji nukleotydów => wybó wpływa na dzialaniae programu i jesgo efekt koncowy
-4. Konstrukcja drzewa filogenetycznego
-5. Moduł oceny drzewa – automatyzacja bootstrappingu i interpretacji wskaźników pewności.
-6. Interfejs użytkownika – najczęściej prosty CLI lub system webowy, umożliwiający wybór sekwencji, parametrów analizy oraz prezentację wyników.
+1. Moduł pobierania i przechowywania danych, optymalne zarządzanie kolekcją sekwencji - idea how easier
+2. Moduł dopasowania sekwencji - wrappery => Mafft jako zewnętrzny program
+3. Model ewolucji molekularnej  => IQtree jako zewnętrzny program
+4. Konstrukcja drzewa filogenetycznego => maximum likelihood
+5. Moduł oceny drzewa – automatyzacja bootstrappingu i interpretacji wskaźników pewności. ??????????????????? - pliki wynikowe
