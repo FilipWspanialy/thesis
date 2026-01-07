@@ -1,7 +1,9 @@
-TODO now
+ .\.venv\Scripts\Activate
 
-+ ideas
-compare with results from known programs
+readme
+gui
+dokumentacja
+Przetestować różne dane
 ---------------------------------------------------------------------
 PLAN sprawka
 
@@ -29,11 +31,6 @@ baza danych Fasta, dlaczego?
 ---------------------------------------------------------------------
 Snakemake?????????????
 
-Packages: 
-BioPython - matplotlib
-TreeSwift
-DendroPy
-ETE Toolkite
 
 BLAST
 edytor tekstu  do sekwencji MacVim, AliView i Jalview:
@@ -48,10 +45,8 @@ algorytm Needlemana-Wunscha - golbalne, algorytm Smitha-Watermana - lokalne
 
 iqtree
 algortym drzewa maximum likelihood
+
+cytochrome c oxidase subunit 4 isoform 1, mitochondrial
+Moduł oceny drzewa – automatyzacja bootstrappingu i interpretacji wskaźników pewności.  - pliki wynikowe
+Konstrukcja drzewa filogenetycznego => maximum likelihood
 ---------------------------------------------------------------------
-PLAN programu
-1. Moduł pobierania i przechowywania danych, optymalne zarządzanie kolekcją sekwencji - idea how easier
-2. Moduł dopasowania sekwencji - wrappery => Mafft jako zewnętrzny program
-3. Model ewolucji molekularnej  => IQtree jako zewnętrzny program
-4. Konstrukcja drzewa filogenetycznego => maximum likelihood
-5. Moduł oceny drzewa – automatyzacja bootstrappingu i interpretacji wskaźników pewności. ??????????????????? - pliki wynikowe
