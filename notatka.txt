@@ -1,5 +1,9 @@
  .\.venv\Scripts\Activate
 
+cos nie dziala z plikami zapisanymi
+sciezka...
+
+
 readme
 gui
 dokumentacja

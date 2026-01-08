@@ -1,18 +1,16 @@
-#!/usr/bin/env python3
+
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 import customtkinter as ctk
 import os
 import subprocess
-# import shutil
-# import sys
 from Bio import Phylo
 import matplotlib.pyplot as plt
 from pathlib import Path
 import threading
 from datetime import datetime
 
-# Konfiguracja CTK
+# CTK
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
 
@@ -39,7 +37,6 @@ class PhylogenyApp:
     def create_study_dirs(self):
         assert self.base_output_dir.exists()
 
-    # Poproś o nazwę przy każdym nowym study
         dlg = ctk.CTkInputDialog(
             text="Enter a name for this study:",
             title="Study Name"
@@ -68,20 +65,14 @@ class PhylogenyApp:
         ]:
             d.mkdir(parents=True, exist_ok=True)
 
-        self.log(f"📁 Created study folder: {self.study_dir}")
+        self.log(f"Created study folder: {self.study_dir}")
 
     def sanitize_fasta_headers(self, input_fasta, output_fasta):
-        """
-        Zamienia nagłówki FASTA na bezpieczne ID:
-        seq1, seq2, seq3...
-        Zapisuje mapę oryginalnych nazw.
-        """
+
         def extract_short_label(header: str) -> str:
-            # próba wyciągnięcia gatunku z [ ... ]
             if "[" in header and "]" in header:
                 species = header.split("[", 1)[1].split("]", 1)[0]
-                # zwróć oba człony
-                return species.strip()  # usuwa ewentualne spacje na końcach
+                return species.strip()
             return header.split()[0]
 
         mapping = {}
@@ -100,7 +91,6 @@ class PhylogenyApp:
         return mapping
 
     def setup_ui(self):
-        # Górny panel - pliki
         self.file_frame = ctk.CTkFrame(self.root)
         self.file_frame.pack(pady=20, padx=20, fill="x")
         
@@ -115,7 +105,6 @@ class PhylogenyApp:
         ctk.CTkButton(btn_frame, text="Add FASTA files", command=self.add_files, width=120).pack(side="left", padx=5)
         ctk.CTkButton(btn_frame, text="Clear list", command=self.clear_files, width=120).pack(side="left", padx=5)
         
-        # Główny panel - przyciski akcji
         self.action_frame = ctk.CTkFrame(self.root)
         self.action_frame.pack(pady=20, padx=20, fill="x")
         
@@ -123,17 +112,16 @@ class PhylogenyApp:
         
         btn_align_frame = ctk.CTkFrame(self.action_frame)
         btn_align_frame.pack(pady=10, fill="x")
-        ctk.CTkButton(btn_align_frame, text="1️⃣ Align sequences (MAFFT)", 
+        ctk.CTkButton(btn_align_frame, text="Align sequences (MAFFT)", 
                      command=lambda: self.run_threaded(self.align_sequences), 
                      height=50).pack(pady=5, padx=20, fill="x")
         
         btn_tree_frame = ctk.CTkFrame(self.action_frame)
         btn_tree_frame.pack(pady=10, fill="x")
-        ctk.CTkButton(btn_tree_frame, text="2️⃣ Phylogenetic analysis + Tree", 
+        ctk.CTkButton(btn_tree_frame, text="Phylogenetic analysis", 
                      command=lambda: self.run_threaded(self.phylogenetic_analysis), 
                      height=50).pack(pady=5, padx=20, fill="x")
         
-        # Logi
         self.log_frame = ctk.CTkFrame(self.root)
         self.log_frame.pack(pady=20, padx=20, fill="both", expand=True)
         
@@ -166,19 +154,8 @@ class PhylogenyApp:
         thread = threading.Thread(target=func, daemon=True)
         thread.start()
     
-    # def check_dependencies(self):
-    #     deps = ["mafft", "iqtree2"]
-    #     missing = []
-    #     for dep in deps:
-    #         if not shutil.which(dep):
-    #             missing.append(dep)
-    #     if missing:
-    #         messagebox.showerror("Error", f"Missing: {', '.join(missing)}\nInstall: sudo apt install mafft iqtree2")
-    #         return False
-    #     return True
     
     def combine_fasta(self, input_files, output_file):
-        """Proste połączenie wielu FASTA do jednego pliku"""
         with open(output_file, "w") as out:
             for fasta_file in input_files:
                 with open(fasta_file, "r") as f:
@@ -192,12 +169,9 @@ class PhylogenyApp:
             drive = p[0].lower()
             p = "/mnt/" + drive + p[2:]
         return p
+    
     def run_mafft(self, input_fasta, output_alignment):
-        # mafft_path = shutil.which("mafft")
-        # if not mafft_path:
-        #     raise RuntimeError("MAFFT not found")
-        
-        # cmd = [mafft_path, "--auto", input_fasta, "--thread", "4"]
+
         wsl_input = self.win_path_to_wsl(str(input_fasta))
         cmd = ["wsl", "mafft", "--quiet", "--thread", "4", "--auto", wsl_input]
 
@@ -210,12 +184,10 @@ class PhylogenyApp:
             self.log(f"[MAFFT] Error: {proc.stderr}")
             raise RuntimeError("MAFFT failed")
         
-        self.log(f"[MAFFT] ✅ Alignment saved: {output_alignment}")
+        self.log(f"[MAFFT] Alignment saved: {output_alignment}")
         return output_alignment
     
     def align_sequences(self):
-        # if not self.check_dependencies():
-        #     return
         
         if not self.fasta_files:
             messagebox.showwarning("Warning", "Add FASTA files first!")
@@ -223,9 +195,8 @@ class PhylogenyApp:
         
         try:
             self.create_study_dirs()
-            self.log("🔄 Starting alignment...")
+            self.log("Starting alignment...")
             
-            # Połącz pliki
             raw_fasta = self.dir_input / "combined_raw.fasta"
             self.combine_fasta(self.fasta_files, raw_fasta)
 
@@ -234,10 +205,9 @@ class PhylogenyApp:
 
             combined_fasta = clean_fasta
 
-            self.log(f"📁 Combined FASTA: {combined_fasta}")
+            self.log(f"Combined FASTA: {combined_fasta}")
             
             
-            # Wyrównaj
             alignment_file = self.dir_alignment / "alignment.fasta"
             self.run_mafft(combined_fasta, alignment_file)
 
@@ -250,7 +220,7 @@ class PhylogenyApp:
             messagebox.showinfo("Success", f"Alignment saved:\n{alignment_file}")
             
         except Exception as e:
-            self.log(f"❌ Error: {str(e)}")
+            self.log(f"Error: {str(e)}")
             messagebox.showerror("Error", str(e))
     
     def run_iqtree(self, alignment_file):
@@ -277,12 +247,12 @@ class PhylogenyApp:
             self.log(f"[IQ-TREE] Error: {proc.stderr}")
             raise RuntimeError("IQ-TREE failed")
         
-        self.log("✅ IQ-TREE completed!")
+        self.log("IQ-TREE completed!")
         return prefix
     
     def plot_tree(self, treefile):
         png_file = self.dir_plots / "phylogenetic_tree.png"
-        self.log(f"📊 Creating tree plot: {png_file}")
+        self.log(f"Creating tree plot: {png_file}")
         
         tree = Phylo.read(treefile, "newick")
         fig = plt.figure(figsize=(14, 10))
@@ -291,21 +261,18 @@ class PhylogenyApp:
         plt.savefig(png_file, dpi=300, bbox_inches='tight')
         plt.close()
         
-        self.log("✅ Tree plot saved!")
+        self.log("Tree plot saved!")
         return png_file
 
     def build_label_map(self, fasta_path):
-        """Z FASTA robi mapę: ID -> gatunek (np. XP_042... -> Ovis aries)."""
         mapping = {}
         with open(fasta_path) as fh:
             for line in fh:
                 if line.startswith(">"):
                     header = line[1:].strip()
-                    # pierwszy token to ID (XP_..., NP_..., itp.)
                     parts = header.split(" ", 1)
                     acc = parts[0]
                     rest = parts[1] if len(parts) > 1 else ""
-                    # gatunek z [ ... ]
                     if "[" in rest and "]" in rest:
                         species = rest.split("[", 1)[1].split("]", 1)[0]
                     else:
@@ -314,7 +281,6 @@ class PhylogenyApp:
         return mapping
 
     def relabel_tree(self, treefile, label_map, out_newick):
-        """Podmienia nazwy liści w drzewie wg label_map i zapisuje nowy plik."""
         tree = Phylo.read(treefile, "newick")
         for clade in tree.get_terminals():
             if clade.name in label_map:
@@ -323,8 +289,6 @@ class PhylogenyApp:
         return out_newick
 
     def phylogenetic_analysis(self):
-        # if not self.check_dependencies():
-        #     return
         
         alignment_file = self.alignment_file
 
@@ -333,14 +297,13 @@ class PhylogenyApp:
             return
         
         try:
-            self.log("🔄 Starting phylogenetic analysis...")
+            self.log("Starting phylogenetic analysis...")
             
             prefix = self.run_iqtree(alignment_file)
             
-            # Znajdź plik drzewa
             treefile = None
             for ext in [".contree", ".treefile"]:
-                candidate = Path(str(prefix) + ext)  # np. tree_analysis.treefile
+                candidate = Path(str(prefix) + ext)
                 if candidate.exists():
                     treefile = candidate
                     break
@@ -348,30 +311,27 @@ class PhylogenyApp:
             if not treefile:
                 raise FileNotFoundError("Tree file not found")
             
-            self.log(f"🌳 Tree file: {treefile}")
+            self.log(f"Tree file: {treefile}")
             
-            # 1) zbuduj mapę ID -> gatunek z FASTA użytego do MAFFT
             if not self.input_for_mafft:
                 raise RuntimeError("No input FASTA remembered for MAFFT")
             label_map = self.header_map
 
 
-            # 2) podmień etykiety w drzewie
             labeled_treefile = self.dir_tree / "tree_labeled.treefile"
             self.relabel_tree(treefile, label_map, labeled_treefile)
-            self.log(f"🌳 Labeled tree file: {labeled_treefile}")
+            self.log(f"Labeled tree file: {labeled_treefile}")
 
-            # 3) rysuj drzewo z ładnymi nazwami gatunków
             self.plot_tree(labeled_treefile)
             
             messagebox.showinfo("Success", 
                 f"Analysis complete!\n\n"
-                f"📁 Output folder: {self.study_dir}\n"
-                f"🌳 Tree: {treefile}\n"
-                f"📊 Plot: {self.dir_plots / 'phylogenetic_tree.png'}")
+                f"Output folder: {self.study_dir}\n"
+                f"Tree: {treefile}\n"
+                f"Plot: {self.dir_plots / 'phylogenetic_tree.png'}")
             
         except Exception as e:
-            self.log(f"❌ Error: {str(e)}")
+            self.log(f"Error: {str(e)}")
             messagebox.showerror("Error", str(e))
     
     def run(self):
