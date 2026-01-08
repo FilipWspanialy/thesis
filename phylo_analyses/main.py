@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import threading
 from datetime import datetime
+import platform
 
 # CTK
 ctk.set_appearance_mode("light")
@@ -112,7 +113,7 @@ class PhylogenyApp:
         
         btn_align_frame = ctk.CTkFrame(self.action_frame)
         btn_align_frame.pack(pady=10, fill="x")
-        ctk.CTkButton(btn_align_frame, text="Align sequences (MAFFT)", 
+        ctk.CTkButton(btn_align_frame, text="Align sequences", 
                      command=lambda: self.run_threaded(self.align_sequences), 
                      height=50).pack(pady=5, padx=20, fill="x")
         
@@ -224,45 +225,58 @@ class PhylogenyApp:
             messagebox.showerror("Error", str(e))
     
     def run_iqtree(self, alignment_file):
-        iqtree_path = "C:\\iqtree-2.4.0-Windows\\iqtree-2.4.0-Windows\\bin\\iqtree2.exe"
-        prefix = self.dir_iqtree / "tree_analysis"
+        wsl_alignment = self.win_path_to_wsl(str(alignment_file))
+        wsl_prefix = self.win_path_to_wsl(str(self.dir_iqtree / "tree_analysis"))
 
-        
         cmd = [
-            iqtree_path, "-s", str(alignment_file), "-m", "MFP",
-            "-bb", "1000", "-alrt", "1000", "-nt", "AUTO",
-            "-pre", str(prefix), "-redo"
+            "wsl", "iqtree2",
+            "-s", wsl_alignment,
+            "-m", "MFP",
+            "-bb", "1000",
+            "-alrt", "1000",
+            "-nt", "AUTO",
+            "-pre", wsl_prefix,
+            "-redo"
         ]
-        
-        self.log(f"[IQ-TREE] Running: {' '.join(cmd)}")
+
+        self.log(f"[IQ-TREE] Running (WSL): {' '.join(cmd)}")
+
         proc = subprocess.run(
             cmd,
-            cwd=self.dir_iqtree,
             capture_output=True,
             text=True
         )
 
-        
         if proc.returncode != 0:
-            self.log(f"[IQ-TREE] Error: {proc.stderr}")
-            raise RuntimeError("IQ-TREE failed")
-        
+            self.log(f"[IQ-TREE] Error:\n{proc.stderr}")
+            raise RuntimeError("IQ-TREE failed in WSL")
+
         self.log("IQ-TREE completed!")
-        return prefix
+        return Path(str(self.dir_iqtree / "tree_analysis"))
+
     
     def plot_tree(self, treefile):
         png_file = self.dir_plots / "phylogenetic_tree.png"
         self.log(f"Creating tree plot: {png_file}")
         
         tree = Phylo.read(treefile, "newick")
-        fig = plt.figure(figsize=(14, 10))
-        ax = fig.add_subplot(1, 1, 1)
-        Phylo.draw(tree, axes=ax)
+
+        plt.figure(figsize=(14, 10))
+        Phylo.draw(tree, do_show=False)
+        
         plt.savefig(png_file, dpi=300, bbox_inches='tight')
         plt.close()
         
         self.log("Tree plot saved!")
         return png_file
+    
+    def open_file(self, path: Path):
+        if platform.system() == "Windows":
+            os.startfile(path)
+        elif platform.system() == "Darwin":
+            subprocess.run(["open", path])
+        else:
+            subprocess.run(["xdg-open", path])
 
     def build_label_map(self, fasta_path):
         mapping = {}
@@ -322,7 +336,9 @@ class PhylogenyApp:
             self.relabel_tree(treefile, label_map, labeled_treefile)
             self.log(f"Labeled tree file: {labeled_treefile}")
 
-            self.plot_tree(labeled_treefile)
+            png = self.plot_tree(labeled_treefile)
+            self.open_file(png)
+
             
             messagebox.showinfo("Success", 
                 f"Analysis complete!\n\n"

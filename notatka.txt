@@ -1,9 +1,5 @@
  .\.venv\Scripts\Activate
 
-cos nie dziala z plikami zapisanymi
-sciezka...
-
-
 readme
 gui
 dokumentacja
@@ -35,6 +31,7 @@ baza danych Fasta, dlaczego?
 ---------------------------------------------------------------------
 Snakemake?????????????
 
+ubuntu/wsl = bioinformatyka
 
 BLAST
 edytor tekstu  do sekwencji MacVim, AliView i Jalview:
