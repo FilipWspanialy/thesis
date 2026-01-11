@@ -1,53 +1,10 @@
  .\.venv\Scripts\Activate
 
-readme
-gui
+
+TODO:
 dokumentacja
 Przetestować różne dane
----------------------------------------------------------------------
-PLAN sprawka
-
-1. filogeneza, można wsponieć o operacjach na dna, białkach, sekwencjach nukleotydowych, kodonach z punktu widzenia przyrodniczego, naturalnego => filogenetyka oraz analizy
-
-2. znaczenie analiz filogentycznych
-
-3. drzewa filogenetyczne - porównanie drzewa Haeckla ze współczesnymi
-
-4. Metody i modele filogenetyczne, yt
-jakie fragment DNA
-na czym polego takie wyrownianie sekwensji dna, 
-a później porównanie, dopasowanie globalne czy lokalne
-algorytm Needlemana-Wunscha - golbalne, algorytm Smitha-Watermana - lokalne
-
-5.czym jest model ewolucji molekularnej
-
-6.  na co warto zwrócic uwagę przy wyborze metody, modelu jak to zachodzi
-
-7. Programowanie analiz filogenetycznych
-baza danych Fasta, dlaczego?
-
-8. Biblioteki w Pythonie, program
-
----------------------------------------------------------------------
-Snakemake?????????????
-
-ubuntu/wsl = bioinformatyka
-
-BLAST
-edytor tekstu  do sekwencji MacVim, AliView i Jalview:
-
-Dopasowanie:
-Clustal W i Clustal Omega
-MUSCLE
-MAFFT - pip install git+https://github.com/iTaxoTools/MAFFTpy.git
-T-Coffee
-PRANK
-algorytm Needlemana-Wunscha - golbalne, algorytm Smitha-Watermana - lokalne
-
-iqtree
-algortym drzewa maximum likelihood
+gui
+readme
 
 cytochrome c oxidase subunit 4 isoform 1, mitochondrial
-Moduł oceny drzewa – automatyzacja bootstrappingu i interpretacji wskaźników pewności.  - pliki wynikowe
-Konstrukcja drzewa filogenetycznego => maximum likelihood
----------------------------------------------------------------------

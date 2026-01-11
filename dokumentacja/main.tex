@@ -1,0 +1,1340 @@
+% !TeX spellcheck = pl_PL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                        %
+% Szablon pracy dyplomowej inzynierskiej %
+% zgodny  z aktualnymi  przepisami  SZJK %
+%                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                        %
+%  (c) Krzysztof Simiński, 2018-2023     %
+%                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                        %
+% Najnowsza wersja szablonów jest        %
+% podstępna pod adresem                  %
+% github.com/ksiminski/polsl-aei-theses  %
+%                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+% Projekt LaTeXowy zapewnia odpowiednie formatowanie pracy,
+% zgodnie z wymaganiami Systemu zapewniania jakości kształcenia.
+% Proszę nie zmieniać ustawień formatowania (np. fontu,
+% marginesów, wytłuszczeń, kursywy itd. ).
+%
+% Projekt można kompilować na kilka sposobów.
+%
+% 1. kompilacja pdfLaTeX
+%
+% pdflatex main
+% bibtex   main
+% pdflatex main
+% pdflatex main
+%
+%
+% 2. kompilacja XeLaTeX
+%
+% Kompilatacja przy użyciu XeLaTeXa różni się tym, że na stronie
+% tytułowej używany jest font Calibri. Wymaga to jego uprzedniego
+% zainstalowania.
+%
+% xelatex main
+% bibtex  main
+% xelatex main
+% xelatex main
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% W przypadku pytań, uwag, proszę pisać na adres:   %
+%      krzysztof.siminski(małpa)polsl.pl            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Chcemy ulepszać szablony LaTeXowe prac dyplomowych.
+% Wypełniając ankietę spod poniższego adresu pomogą
+% Państwo nam to zrobić. Ankieta jest całkowicie
+% anonimowa. Dziękujemy!
+
+
+% https://docs.google.com/forms/d/e/1FAIpQLScyllVxNKzKFHfILDfdbwC-jvT8YL0RSTFs-s27UGw9CKn-fQ/viewform?usp=sf_link
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% PERSONALIZACJA PRACY – DANE PRACY           %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Proszę wpisać swoje dane w poniższych definicjach.
+
+% TODO
+% dane autora
+\newcommand{\FirstNameAuthor}{Filip}
+\newcommand{\SurnameAuthor}{Wspaniały}
+\newcommand{\IdAuthor}{$\langle$306982$\rangle$}   % numer albumu  (bez $\langle$ i $\rangle$)
+
+% drugi autor:
+%\newcommand{\FirstNameCoauthor}{Imię}   % Jeżeli jest drugi autor, to tutaj należy podać imię.
+%\newcommand{\SurnameCoauthor}{Nazwisko} % Jeżeli jest drugi autor, to tutaj należy podać nazwisko.
+%\newcommand{\IdCoauthor}{$\langle$wpisać właściwy$\rangle$}  % numer albumu drugiego autora (bez $\langle$ i $\rangle$)
+% Gdy nie ma drugiego autora, należy zostawić poniższe definicje puste, jak poniżej. Gdy jest drugi autor, należy zakomentować te linie.
+\newcommand{\FirstNameCoauthor}{} % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\SurnameCoauthor}{}   % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+\newcommand{\IdCoauthor}{}  % Jeżeli praca ma tylko jednego autora, to dane drugiego autora zostają puste.
+%%%%%%%%%%
+
+\newcommand{\Supervisor}{$\langle$dr inż. Anna Tamulewicz$\rangle$}     % dane promotora (bez $\langle$ i $\rangle$)
+\newcommand{\Title}{Narzędzie do analiz filogenetycznych.}           % tytuł pracy po polsku
+\newcommand{\TitleAlt}{Phylogenetic analysis tool.}                     % thesis title in English
+\newcommand{\Program}{$\langle$Inżynieria biomedyczna$\rangle$}            % kierunek studiów  (bez $\langle$ i $\rangle$)
+\newcommand{\Specialisation}{$\langle$Informatyka i aparatura medyczna$\rangle$}     % specjalność  (bez $\langle$ i $\rangle$)
+\newcommand{\Departament}{$\langle$Katedra Informatyki Medycznej i Sztucznej Inteligencji$\rangle$}        % katedra promotora  (bez $\langle$ i $\rangle$)
+
+% Jeżeli został wyznaczony promotor pomocniczy lub opiekun, proszę go/ją wpisać ...
+%\newcommand{\Consultant}{$\langle$stopień naukowy imię i nazwisko$\rangle$} % dane promotora pomocniczego, opiekuna (bez $\langle$ i $\rangle$)
+% ... w przeciwnym razie proszę zostawić puste miejsce jak poniżej:
+\newcommand{\Consultant}{} % brak promotowa pomocniczego / opiekuna
+
+% koniec fragmentu do modyfikacji
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% KONIEC PERSONALIZACJI PRACY                 %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% PROSZĘ NIE MODYFIKOWAĆ PONIŻSZYCH USTAWIEŃ! %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\documentclass[a4paper,twoside,12pt]{book}
+\usepackage[utf8]{inputenc}                                      
+\usepackage[T1]{fontenc}  
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[british,polish]{babel} 
+\usepackage{indentfirst}
+\usepackage{xurl}
+\usepackage{xstring}
+\usepackage{ifthen}
+
+
+
+\usepackage{ifxetex}
+
+\ifxetex
+	\usepackage{fontspec}
+	\defaultfontfeatures{Mapping=tex—text} % to support TeX conventions like ``——-''
+	\usepackage{xunicode} % Unicode support for LaTeX character names (accents, European chars, etc)
+	\usepackage{xltxtra} % Extra customizations for XeLaTeX
+\else
+	\usepackage{lmodern}
+\fi
+
+
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx} 
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{subcaption}   % subfigures
+\usepackage[page]{appendix} % toc,
+\renewcommand{\appendixtocname}{Dodatki}
+\renewcommand{\appendixpagename}{Dodatki}
+\renewcommand{\appendixname}{Dodatek}
+
+\usepackage{csquotes}
+\usepackage[natbib=true,backend=bibtex,maxbibnames=99]{biblatex}  % kompilacja bibliografii BibTeXem
+%\usepackage[natbib=true,backend=biber,maxbibnames=99]{biblatex}  % kompilacja bibliografii Biberem
+\bibliography{biblio}
+%\usepackage[backend=biber, style=alphabetic]{biblatex}  % Ładowanie pakietu biblatex
+%\addbibresource{biblio.bib}  % Linkowanie do pliku .bib
+%\usepackage{ifmtarg}   % empty commands  
+
+\usepackage{setspace}
+\onehalfspacing
+
+
+\frenchspacing
+
+
+
+%%%% TODO LIST GENERATOR %%%%%%%%%
+
+\usepackage{color}
+\definecolor{brickred}      {cmyk}{0   , 0.89, 0.94, 0.28}
+
+\makeatletter \newcommand \kslistofremarks{\section*{Uwagi} \@starttoc{rks}}
+  \newcommand\l@uwagas[2]
+    {\par\noindent \textbf{#2:} %\parbox{10cm}
+{#1}\par} \makeatother
+
+
+\newcommand{\ksremark}[1]{%
+{%\marginpar{\textdbend}
+{\color{brickred}{[#1]}}}%
+\addcontentsline{rks}{uwagas}{\protect{#1}}%
+}
+
+\newcommand{\comma}{\ksremark{przecinek}}
+\newcommand{\nocomma}{\ksremark{bez przecinka}}
+\newcommand{\styl}{\ksremark{styl}}
+\newcommand{\ortografia}{\ksremark{ortografia}}
+\newcommand{\fleksja}{\ksremark{fleksja}}
+\newcommand{\pauza}{\ksremark{pauza `--', nie dywiz `-'}}
+\newcommand{\kolokwializm}{\ksremark{kolokwializm}}
+\newcommand{\cudzyslowy}{\ksremark{,,polskie cudzysłowy''}}
+
+%%%%%%%%%%%%%% END OF TODO LIST GENERATOR %%%%%%%%%%%
+
+\newcommand{\printCoauthor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALen]
+    \ifthenelse{\FNCoALen > 0}%
+    {%
+		{\large\bfseries\Coauthor\par}
+	
+		{\normalsize\bfseries \LeftId: \IdCoauthor\par}
+    }%
+    {}
+} 
+
+%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\autor}{%		
+    \StrLen{\FirstNameCoauthor}[\FNCoALenXX]
+    \ifthenelse{\FNCoALenXX > 0}%
+    {\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}%
+	{\FirstNameAuthor\ \SurnameAuthor}%
+}
+%%%%%%%%%%%%%%%%%%%%%
+
+\StrLen{\FirstNameCoauthor}[\FNCoALen]
+\ifthenelse{\FNCoALen > 0}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor, \FirstNameCoauthor\ \SurnameCoauthor}
+}%
+{%
+\author{\FirstNameAuthor\ \SurnameAuthor}
+}%
+
+%%%%%%%%%%%% ZYWA PAGINA %%%%%%%%%%%%%%%
+% brak kapitalizacji zywej paginy
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\nouppercase{\it\rightmark}}
+\fancyhead[RE]{\nouppercase{\it\leftmark}}
+\fancyhead[LE,RO]{\it\thepage}
+
+
+\fancypagestyle{tylkoNumeryStron}{%
+   \fancyhf{} 
+   \fancyhead[LE,RO]{\it\thepage}
+}
+
+\fancypagestyle{bezNumeracji}{%
+   \fancyhf{} 
+   \fancyhead[LE,RO]{}
+}
+
+
+\fancypagestyle{NumeryStronNazwyRozdzialow}{%
+   \fancyhf{} 
+   \fancyhead[LE]{\nouppercase{\autor}}
+   \fancyhead[RO]{\nouppercase{\leftmark}} 
+   \fancyfoot[CE, CO]{\thepage}
+}
+
+
+%%%%%%%%%%%%% OBCE WTRETY  
+\newcommand{\obcy}[1]{\emph{#1}}
+\newcommand{\english}[1]{{\selectlanguage{british}\obcy{#1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% polskie oznaczenia funkcji matematycznych
+\renewcommand{\tan}{\operatorname {tg}}
+\renewcommand{\log}{\operatorname {lg}}
+
+% jeszcze jakies drobiazgi
+
+\newcounter{stronyPozaNumeracja}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newcommand{\printOpiekun}[1]{%		
+
+    \StrLen{\Consultant}[\mystringlen]
+    \ifthenelse{\mystringlen > 0}%
+    {%
+       {\large{\bfseries OPIEKUN, PROMOTOR POMOCNICZY}\par}
+       
+       {\large{\bfseries \Consultant}\par}
+    }%
+    {}
+} 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+% Proszę nie modyfikować poniższych definicji!
+\newcommand{\Author}{\FirstNameAuthor\ \MakeUppercase{\SurnameAuthor}} 
+\newcommand{\Coauthor}{\FirstNameCoauthor\ \MakeUppercase{\SurnameCoauthor}}
+\newcommand{\Type}{PROJEKT INŻYNIERSKI}
+\newcommand{\Faculty}{Wydział Inżynierii Biomedycznej} 
+\newcommand{\Polsl}{Politechnika Śląska}
+\newcommand{\Logo}{politechnika_sl_logo_bw_pion_pl.pdf}
+\newcommand{\LeftId}{Nr albumu}
+\newcommand{\LeftProgram}{Kierunek}
+\newcommand{\LeftSpecialisation}{Specjalność}
+\newcommand{\LeftSUPERVISOR}{PROWADZĄCY PRACĘ}
+\newcommand{\LeftDEPARTMENT}{KATEDRA}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% KONIEC USTAWIEŃ                             %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% MOJE PAKIETY, USTAWIENIA ITD                %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Tutaj proszę umieszczać swoje pakiety, makra, ustawienia itd.
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float} 
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% listingi i fragmentu kodu źródłowego 
+% pakiet: listings lub minted
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+% biblioteka listings
+\usepackage{listings}
+\lstset{%
+morekeywords={string,exception,std,vector},% słowa kluczowe rozpoznawane przez pakiet listings
+language=C++,% C, Matlab, Python, SQL, TeX, XML, bash, ... – vide https://www.ctan.org/pkg/listings
+commentstyle=\textit,%
+identifierstyle=\textsf,%
+keywordstyle=\sffamily\bfseries, %\texttt, %
+%captionpos=b,%
+tabsize=3,%
+frame=lines,%
+numbers=left,%
+numberstyle=\tiny,%
+numbersep=5pt,%
+breaklines=true,%
+escapeinside={@*}{*@},%
+}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% pakiet minted
+%\usepackage{minted}
+
+% pakiet wymaga specjalnego kompilowania:
+% pdflatex -shell-escape main.tex
+% xelatex  -shell-escape main.tex
+
+%\usepackage[chapter]{minted} % [section]
+%%\usemintedstyle{bw}   % czarno-białe kody 
+%
+%\setminted % https://ctan.org/pkg/minted
+%{
+%%fontsize=\normalsize,%\footnotesize,
+%%captionpos=b,%
+%tabsize=3,%
+%frame=lines,%
+%framesep=2mm,
+%numbers=left,%
+%numbersep=5pt,%
+%breaklines=true,%
+%escapeinside=@@,%
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% KONIEC MOICH USTAWIEŃ                       %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+%\kslistofremarks
+
+\frontmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% PROSZĘ NIE MODYFIKOWAĆ STRONY TYTUŁOWEJ!    %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%  STRONA TYTUŁOWA %%%%%%%%%%%%%%%%%%%
+\pagestyle{empty}
+{
+	\newgeometry{top=1.5cm,%
+	             bottom=2.5cm,%
+	             left=3cm,
+	             right=2.5cm}
+ 
+	\ifxetex 
+	  \begingroup
+	  \setsansfont{Calibri}
+	   
+	\fi 
+	 \sffamily
+	\begin{center}
+	\includegraphics[width=50mm]{\Logo}
+	 
+	
+	{\Large\bfseries\Type\par}
+	
+	\vfill  \vfill  
+			 
+	{\large\Title\par}
+	
+	\vfill  
+		
+	{\large\bfseries\Author\par}
+	
+	{\normalsize\bfseries \LeftId: \IdAuthor}
+
+	\printCoauthor
+	
+	\vfill  		
+ 
+	{\large{\bfseries \LeftProgram:} \Program\par} 
+	
+	{\large{\bfseries \LeftSpecialisation:} \Specialisation\par} 
+	 		
+	\vfill  \vfill 	\vfill 	\vfill 	\vfill 	\vfill 	\vfill  
+	 
+	{\large{\bfseries \LeftSUPERVISOR}\par}
+	
+	{\large{\bfseries \Supervisor}\par}
+				
+	{\large{\bfseries \LeftDEPARTMENT\ \Departament} \par}
+		
+	{\large{\bfseries \Faculty}\par}
+		
+	\vfill  \vfill  
+
+    	
+    \printOpiekun{\Consultant}
+    
+	\vfill  \vfill  
+		
+    {\large\bfseries  Zabrze \the\year}
+
+   \end{center}	
+       \ifxetex 
+       	  \endgroup
+       \fi
+	\restoregeometry
+}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                             %
+% KONIEC STRONY TYTUŁOWEJ                     %
+%                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+
+\cleardoublepage
+
+\rmfamily\normalfont
+\pagestyle{empty}
+
+
+%%% No to zaczynamy pisać pracę :-) %%%%
+
+% TODO
+\subsubsection*{Tytuł pracy} 
+\Title
+
+\subsubsection*{Streszczenie}  
+Celem niniejszej pracy inżynierskiej było zaprojektowanie i zaimplementowanie systemu informatycznego do analiz filogenetycznych sekwencji białkowych. W ramach pracy pogłębiono wiedzę z zakresu filogenetyki oraz zintegrowano uznane algorytmy i narzędzia bioinformatyczne (MAFFT, IQ-TREE, Biopython), tworząc kompleksowe rozwiązanie do przetwarzania danych. Zaprezentowano architekturę aplikacji umożliwiającą przygotowanie danych wejściowych, wyrównanie sekwencji, analizę filogenetyczną z automatycznym wyborem modelu ewolucyjnego oraz wizualizację drzew filogenetycznych. W pracy opisano szczegółowo strukturę programu, uzasadnienie wyboru narzędzi oraz wyniki testów na rzeczywistych danych z NCBI.
+
+
+\subsubsection*{Słowa kluczowe} 
+filogenetyka, bioinformatyka, wyrównanie sekwencji, analiza filogenetyczna, model ewolucyjny, drzewo filogenetyczne
+
+\subsubsection*{Thesis title} 
+\begin{otherlanguage}{british}
+\TitleAlt
+\end{otherlanguage}
+
+\subsubsection*{Abstract} 
+\begin{otherlanguage}{british}
+The objective of this engineering thesis was to design and implement a computational system for phylogenetic analysis of protein sequences. The work deepened knowledge in phylogenetics and integrated established bioinformatics algorithms and tools (MAFFT, IQ-TREE, Biopython), creating a comprehensive solution for data processing. The application architecture is presented, enabling input data preparation, sequence alignment, phylogenetic analysis with automatic evolutionary model selection, and visualization of phylogenetic trees. The thesis provides a detailed description of the program structure, rationale for tool selection, and test results on real datasets from NCBI.
+
+\end{otherlanguage}
+\subsubsection*{Key words}  
+\begin{otherlanguage}{british}
+phylogenetics, bioinformatics, sequence alignment, phylogenetic analysis, evolutionary model, phylogenetic tree
+\end{otherlanguage}
+
+
+
+
+%%%%%%%%%%%%%%%%%% SPIS TRESCI %%%%%%%%%%%%%%%%%%%%%%
+% Add \thispagestyle{empty} to the toc file (main.toc), because \pagestyle{empty} doesn't work if the TOC has multiple pages
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{stronyPozaNumeracja}{\value{page}}
+\mainmatter
+\pagestyle{empty}
+
+\cleardoublepage
+
+\pagestyle{NumeryStronNazwyRozdzialow}
+
+%%%%%%%%%%%%%% wlasciwa tresc pracy %%%%%%%%%%%%%%%%%
+
+% TODO
+\chapter{Wstęp}
+\label{ch:01-wstep}
+
+\section{Wprowadzenie do tematu}
+Analiza filogenetyczna wykorzystuje dane z dziedziny filogenetyki do rekonstrukcji ewolucyjnych zależności i podobieństw międzygatunkowych. Efektem procesu jest drzewo filogenetyczne, generowane w oparciu o wybrany model substytucji, które za pomocą rozgałęzień ilustruje odległości ewolucyjne między analizowanymi taksonami. Kluczowym przełomem w rozwoju tej dyscypliny okazał się postęp informatyki i programowania, umożliwiający automatyzację metod obliczeniowych oraz znaczące przyspieszenie analiz sekwencji genetycznych. Rozwój ten przyczynił się bezpośrednio do powstania nowych algorytmów wyrównywania sekwencji oraz metod inferencji drzew filogenetycznych.
+Wraz ze wzrostem złożoności algorytmów oraz liczby dostępnych narzędzi, proces analizy filogenetycznej przestał być jednorazowym obliczeniem, a stał się wieloetapowym zadaniem wymagającym doboru metod, parametrów oraz interpretacji wyników. W praktyce badawczej prowadzi to do konieczności łączenia wielu narzędzi programistycznych oraz zarządzania złożonymi procesami obliczeniowymi.
+
+\section{Osadzenie problemu w dziedzinie}
+
+Współczesna analiza filogenetyczna osiągnęła wysoki poziom zaawansowania dzięki ciągłemu doskonaleniu algorytmów i opracowywaniu nowych metod rekonstrukcji drzew ewolucyjnych. Natomiast brak pewności co do optymalności najlepszych algorytmów powoduje, że nawet systemy oceny i porównywania metod opierają się głównie na statystyce. Kluczowym wyzwaniem w analizach filogenetycznych pozostaje pytanie o prawdopodobieństwo, że uzyskane rozwiązanie jest rzeczywiście najlepsze dla danego zbioru danych. Istniejące systemy analityczne mogą wskazać optymalny algorytm, metodę lub model substytucji dla konkretnej sekwencji, jednak ostateczny wybór wymaga integracji wielu narzędzi w spójny workflow. W praktyce badawczej analizy filogenetyczne wymagają wielokrotnego testowania algorytmów, modeli substytucji oraz parametrów wejściowych, co prowadzi do powstawania złożonych, trudnych do odtworzenia, porównania oraz powtarzalnego uruchamiania workflowów analitycznych. Brakuje systemów, które w sposób zintegrowany umożliwiałyby porównywanie wyników różnych metod, zarządzanie eksperymentami analitycznymi oraz wspomaganie decyzji o wyborze końcowego drzewa filogenetycznego.
+
+\section{Cel pracy} 
+
+Celem pracy było zaprojektowanie oraz zaimplementowanie systemu wspomagającego analizy filogenetyczne, umożliwiającego integrację poszczególnych etapów procesu analitycznego w spójny workflow. System ma na celu wsparcie użytkownika w rekonstrukcji drzew filogenetycznych poprzez automatyzację kluczowych kroków analizy oraz uporządkowaną prezentację wyników.
+
+\section{Zakres pracy}
+
+Zakres pracy obejmuje analizę podstaw teoretycznych filogenetyki oraz przegląd wybranych metod i narzędzi wykorzystywanych w analizach filogenetycznych.
+W ramach pracy dokonano porównania dostępnych podejść do wyrównywania sekwencji, inferencji drzew filogenetycznych oraz doboru modeli ewolucyjnych. 
+Praca obejmuje zaprojektowanie i implementację systemu integrującego wybrane narzędzia analityczne w spójny workflow, umożliwiającego przeprowadzenie analizy filogenetycznej oraz wizualizację uzyskanych wyników. Zakres pracy nie obejmuje opracowywania nowych algorytmów filogenetycznych ani formalnej oceny biologicznej poprawności uzyskanych drzew.
+
+\section{Zwięzła charakterystyka rozdziałów}
+
+% \begin{itemize} %tudu
+% \item \textbf{Rozdział 1 - Wstęp:} Wprowadzenie do tematu i przedstawienie problemu analiz filogenetycznych.
+% \item \textbf{Rozdział 2 - Analiza tematu:} Rozwinięcie tematu generownia proceduralnego, przedstawienie mechanizmów wykorzystywanych w algorytach generujących oraz opisanie szumów. 
+% \item \textbf{Rozdział 3 - Wymagania i narzędzia:} Zaprezentowanie użytych technologii i biobliotek oraz przedtawienie wymagań funkcjonalnych i niefunkcjonalnych.
+% \item \textbf{Rozdział 4 - Specyfikacja zewnętrzna:} Wymagania sprzętowe, opisanie instalacji i aktywacji programu. Intrukcja poruszania się po świecie oraz przykładowe działanie.
+% \item \textbf{Rozdział 5 - Specyfikacja wewnętrzna:} Przedstawienie idei programu, architektury ogólnej oraz opisanie działania i architektury najważniejszych elementów i klas projektu.
+% \item \textbf{Rozdział 6 - Weryfikacja i walidacja:} Opisanie metod testowania wydajności programu oraz działania algorytmu proceduralnej generacji świata.
+% \item \textbf{Rozdział 7 - Podsumowanie i wnioski:} Podsumowanie efektów pracy i przedstawienie kierunków ewentualnych dalszych prac.
+% \end{itemize}
+
+\section{Określenie wkładu autora}
+
+Autor odpowiadał za zaprojektowanie architektury oraz implementację systemu wspomagającego analizy filogenetyczne. W ramach pracy autor dokonał integracji wybranych narzędzi do wyrównywania sekwencji, inferencji drzew filogenetycznych oraz doboru modeli ewolucyjnych w spójny workflow analityczny.
+Autor był również odpowiedzialny za przygotowanie mechanizmów wizualizacji wyników analizy oraz obsługę danych wejściowych, w tym pozyskiwanie sekwencji genetycznych z publicznie dostępnej bazy NCBI.
+
+\chapter{Podstawy teoretyczne analizy filogenetycznej}
+\label{ch:02-podstawy-teoretyczne-analizy-filogenetycznej}
+
+\section{Filogenetyka i drzewa filogenetyczne}
+
+Filogenetyka jest dziedziną biologii zajmującą się badaniem filogenezy, czyli historii rozwoju rodowego organizmów oraz relacji pokrewieństwa pomiędzy taksonami. Obejmuje ona analizę przebiegu procesów ewolucyjnych prowadzących do różnicowania organizmów i powstawania nowych linii rozwojowych. Analiza filogenetyczna umożliwia określanie zależności ewolucyjnych między gatunkami i taksonami na podstawie różnych źródeł danych, takich jak zapisy paleontologiczne, anatomia porównawcza oraz dane molekularne.
+
+W niniejszej pracy wykorzystywane są metody filogenetyki molekularnej, które opierają się na analizie sekwencji DNA lub białek w celu rekonstrukcji relacji ewolucyjnych. Wynikiem takiej analizy jest przedstawione na rysunku 2.1 drzewo filogenetyczne — struktura graficzna przedstawiająca hipotezę pokrewieństwa pomiędzy badanymi taksonami. W zależności od zastosowanej metody rekonstrukcji oraz modelu ewolucyjnego, długości gałęzi drzewa mogą odzwierciedlać miarę zmian genetycznych lub mieć charakter wyłącznie topologiczny. [1][2]
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{drzewo_filo.png}
+    \caption{Drzewo filogenetyczne; źródło: [1]}
+\end{figure}
+
+\section{Sekwencje genetyczne jako dane wejściowe}
+
+Sekwencje genetyczne stanowią podstawowe dane wejściowe wykorzystywane w analizach filogenetycznych realizowanych przez system. Są to uporządkowane ciągi symboli reprezentujących nukleotydy DNA lub aminokwasy budujące białka. W zależności od rodzaju analizy, system może operować na sekwencjach nukleotydowych lub sekwencjach aminokwasowych.
+
+W praktyce analitycznej sekwencje genetyczne pozyskiwane są z badań włąsnych lub publicznych baz danych, takich jak NCBI, DDBJ, czy ENA i najczęściej zapisywane w formacie FASTA pokaznym na rysunku 2.2. Format ten umożliwia jednoznaczną identyfikację sekwencji oraz jej dalsze przetwarzanie przez narzędzia bioinformatyczne. Sekwencje mogą różnić się długością, stopniem kompletności oraz jakością danych, co wpływa na przebieg kolejnych etapów analizy. [1]
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{sekwencja_bialkowa.png}
+    \caption{Sekwencja białkowa; źródło: [2]}
+\end{figure}
+
+Ze względu na występowanie różnic długości sekwencji oraz obecność insercji i delecji, bezpośrednie porównywanie sekwencji nie jest możliwe. Z tego powodu przed rekonstrukcją drzewa filogenetycznego konieczne jest przeprowadzenie etapu wyrównywania sekwencji, który umożliwia ich porównywanie w ujednoliconej postaci.
+
+\section{Wyrównywanie sekwencji}
+
+Wyrównanie sekwencji jest kluczowym etapem w procesie analizy filogenetycznej, umożliwiającym porównywanie sekwencji genetycznych pochodzących od różnych organizmów. W wyniku procesów ewolucyjnych, takich jak insercje i delecje (indele), sekwencje mogą różnić się długością oraz zawierać przesunięcia pozycji homologicznych, co uniemożliwia ich bezpośrednie porównanie.
+
+Celem wyrównania sekwencji jest identyfikacja pozycji homologicznych pomiędzy sekwencjami poprzez wprowadzenie przerw (ang. gaps), tak aby możliwe było ich dalsze przetwarzanie w kolejnych etapach analizy (rysunek 2.3). Wyrównanie pozwala na ujednolicenie długości sekwencji oraz określenie podobieństw i różnic wynikających z przebiegu ewolucji.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{alligment.png}
+    \caption{Wyrównane sekwencje białkowe; źródło: [2]}
+\end{figure}
+
+W zależności od zastosowanego algorytmu możliwe jest wykonywanie wyrównań globalnych, obejmujących całe sekwencje, lub lokalnych, koncentrujących się na ich fragmentach. Przykładami klasycznych algorytmów wykorzystywanych w tym celu są: algorytm Needlemana–Wunscha dla wyrównań globalnych oraz algorytm Smitha–Watermana dla wyrównań lokalnych. Dobór odpowiedniej metody wyrównania ma istotny wpływ na jakość dalszej analizy filogenetycznej.
+Wyrównanie może wymagać także poprawek manualnych, zwłaszcza w przypadku sekwencji o niskim stopniu podobieństwa lub zawierających liczne indels. W praktyce badawczej często stosuje się podejście iteracyjne, polegające na wielokrotnym wyrównywaniu sekwencji z różnymi parametrami oraz ręcznej korekcie wyników w celu uzyskania optymalnego wyrównania.[1][3]
+
+\section{Metody rekonstrukcji drzew filogenetycznych}
+
+Rekonstrukcja drzewa filogenetycznego stanowi złożone zagadnienie statystyczne i algorytmiczne, a jej wynik zależy od przyjętych założeń biologicznych oraz zastosowanej metody analizy. W praktyce badawczej dostępnych jest wiele metod rekonstrukcji filogenezy, które mogą prowadzić do odmiennych wyników nawet dla tego samego zestawu danych. Z tego względu często stosuje się podejście polegające na porównywaniu rezultatów uzyskanych z wykorzystaniem różnych metod.
+
+Wśród podstawowych metod rekonstrukcji drzew filogenetycznych wyróżnia się metody:
+\begin{itemize}
+    \item metoda największej parsymonii,
+    \item metody odległościowe,
+    \item metody największej wiarygodności,
+    \item metody bayesowskie.
+\end{itemize} 
+Metody te różnią się sposobem modelowania procesu ewolucyjnego oraz podejściem do oceny najlepszego drzewa filogenetycznego. W zależności od zastosowanej metody, długości gałęzi drzewa mogą reprezentować liczbę zmian ewolucyjnych, estymowaną odległość genetyczną lub mieć charakter wyłącznie topologiczny.
+
+Metody rekonstrukcji drzew filogenetycznych różnią się zakresem przyjmowanych założeń oraz stopniem złożoności obliczeniowej. Metoda największej parsymonii opiera się na minimalizacji liczby zmian ewolucyjnych i nie wykorzystuje jawnych modeli probabilistycznych. Metody odległościowe bazują na macierzy odległości genetycznych pomiędzy sekwencjami, upraszczając analizę kosztem utraty części informacji. Metody największej wiarygodności oraz metody bayesowskie wykorzystują modele probabilistyczne opisujące proces substytucji, co pozwala na bardziej realistyczne modelowanie ewolucji, jednak wiąże się z większym kosztem obliczeniowym. [3]
+
+
+
+% \begin{itemize}
+% \item \textbf{Szum biały (ang: White noice)} - W przeciwieńtwie do szumów Perlina i Simplex generuje warości losowe, niezależne od ich sąsiadów. Stosuje się je do generowania dzwięków akustycznych i losowych zjawisk [8].
+% \item \textbf{Szum różowy (ang: Pink noice)} - Generuje więcej niskich niż wysokich częstotliwości. Służy do modelowania naturalnyh procesów biologicznych oraz kalibracji systemów dźwiękowych [8].
+% \item \textbf{Szum wartości (ang: Value noice)} - Generuje płynne wzory interpolująć losowe wartości. \textbf{Szum Value} jest wykorzystywany do generowania struktor i efektów specjalnych w grach. [12].
+% \item \textbf{Szum 'fraktalne ruchy Browna' (ang: Fractal Brownian Motion)} - Łączy kilka warst szumów Perlin, Value, Simplex w róznych skalach. Jest wykorzystywany do generowania róznych elementów terenu w grach [9].
+% \end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% TODO
+\chapter{Przegląd istniejących narzędzi i rozwiązań}
+\label{ch:03-przeglad-istniejacych-narzedzi-i-rozwiazan}
+%here
+\section{Narzędzia do wyrównywania sekwencji}
+
+Szeroki wachlarz dostępnych programów do wyrównywania sekwencji umożliwia elastyczne dopasowanie narzędzia do rodzaju oraz rozmiaru analizowanych danych oraz potrzeb badawczych. Programy te wykorzystują różne algorytmy i strategie dopasowania, od klasycznych metod opartych na dynamicznym programowaniu, po bardziej zaawansowane heurystyki optymalizacyjne. Poniżej przedstawiono przegląd wybranych narzędzi do wielosekwencyjnego wyrównywania sekwencji[1]:
+\begin{itemize}
+    \item \textbf{Clustal W i Clustal Omega} 
+    \item \textbf{MAFFT} 
+    \item \textbf{MUSCLE} 
+    \item \textbf{T-Coffee}
+    \item \textbf{PRANK} 
+    \item \textbf{ProbCons} 
+\end{itemize} 
+
+Do analizy i wprowadzania poprawek ręcznie mozna wykorzystać edytory wyrównań takie jak[1]:
+\begin{itemize}
+    \item \textbf{Jalview} 
+    \item \textbf{AliView} 
+    \item \textbf{MacVim}
+\end{itemize}
+
+\section{Narzędzia do inferencji filogenetycznej}
+
+Inferencja filogenetyczna polega na rekonstrukcji drzewa filogenetycznego w oparciu o dane sekwencyjne. Dostępne są różne programy i metody, które realizują tę funkcję, wykorzystując odmienne podejścia. Wybór odpowiedniego narzędzia zależy od rodzaju danych, liczby sekwencji oraz wymagań dotyczących dokładności i czasu obliczeń[1].
+\begin{itemize}
+    \item \textbf{IQ-TREE 2} 
+    \item \textbf{RAxML} 
+    \item \textbf{MrBayes} 
+    \item \textbf{PhyML} 
+    \item \textbf{PHYLIP}
+    \item \textbf{PAUP*}
+    \item \textbf{MEGA} 
+\end{itemize} 
+
+Po zakończeniu inferencji filogenetycznej często konieczne jest ocenienie wiarygodności uzyskanego drzewa. Do tego celu stosuje się metody takie jak bootstrap czy analiza bayesowska, które pozwalają na oszacowanie pewności poszczególnych gałęzi drzewa. Wiele z wymienionych narzędzi oferuje wbudowane funkcje do przeprowadzania takich analiz.
+
+Po zakończeniu analizy filogenetycznej otrzymuje się w postaci pliku tekstowego zawierającego opis drzewa w formacie Newick lub Nexus, który może być dalej przetwarzany i wizualizowany za pomocą dedykowanych narzędzi.[1]
+
+\section{Narzędzia do wizualizacji drzew filogenetycznych}
+
+Do wizualizacji drzew filogenetycznych dostępne są różne narzędzia, które umożliwiają graficzne przedstawienie wyników analizy filogenetycznej. Poniżej przedstawiono wybrane programy do wizualizacji drzew:
+\begin{itemize}
+    \item \textbf{FigTree} 
+    \item \textbf{Dendroscope} 
+    \item \textbf{iTOL} 
+    \item \textbf{ETE Toolkit}
+    \item \textbf{Phylo.io}
+\end{itemize} 
+
+\section{Ograniczenia istniejących rozwiązań}
+
+Chociaż istnieją systemy i frameworki do automatyzacji analiz bioinformatycznych (np. Galaxy, Snakemake, Nextflow), w praktyce często wymaga się ręcznego ustawiania parametrów poszczególnych narzędzi oraz integracji wyników. Zaprojektowany system automatyzuje pełny łańcuch analizy — od wczytania sekwencji, przez wyrównanie i rekonstrukcję drzewa filogenetycznego, aż po wizualizację wyników — co ułatwia prowadzenie badań, zwiększa powtarzalność wyników i umożliwia prostsze korzystanie z analizy filogenetycznej, także osobom dopiero rozpoczynającym pracę z tymi metodami.
+
+
+\section{Opis zastosowanych technologii i narzędzi}
+
+\subsection{Python}
+Python jest wysokopoziomowym językiem programowania, powszechnie wykorzystywanym w bioinformatyce oraz do automatyzacji analiz danych. W projekcie Python został użyty jako główny język implementacji systemu, odpowiadający za sterowanie przebiegiem analizy filogenetycznej, obsługę interfejsu użytkownika oraz integrację z zewnętrznymi narzędziami bioinformatycznymi. Implementacja została wykonana w środowisku programistycznym Visual Studio Code.
+
+\subsubsection*{Biblioteki}
+W projekcie wykorzystano następujące biblioteki Pythona:
+\begin{itemize}
+    \item \textbf{Biopython} – analiza danych biologicznych
+    \item \textbf{subprocess} – integracja z zewnętrznymi narzędziami (MAFFT, IQ-TREE)
+    \item \textbf{Matplotlib} –  wizualizacja drzew.
+    \item \textbf{tkinter} – interfejs użytkownika do tworzenia aplikacji okienkowych.
+\end{itemize}
+
+\subsection{Ubuntu - Linux}
+System wykorzystuje środowisko systemu operacyjnego Ubuntu (Linux). Wybór systemu Linux podyktowany był wysoką kompatybilnością z narzędziami bioinformatycznymi, takimi jak MAFFT oraz IQ-TREE 2, które są natywnie rozwijane i testowane w tym środowisku.
+
+\subsection{MAFFT}
+Narzędzie do wyrównywania sekwencji DNA i białek. MAFFT oferuje różne algorytmy, które można dostosować do rozmiaru i charakterystyki danych wejściowych. W projekcie MAFFT został wykorzystany do przeprowadzenia etapu wyrównywania sekwencji przed rekonstrukcją drzewa filogenetycznego.
+
+\subsection{IQ-TREE 2}
+Narzędzie do rekonstrukcji drzew filogenetycznych metodą największej wiarygodności (Maximum Likelihood). Program umożliwia automatyczny dobór modelu substytucji oraz oferuje wydajne algorytmy optymalizacji drzewa, co czyni go jednym z najczęściej wykorzystywanych narzędzi do inferencji filogenetycznej.
+
+\subsection{System kontroli wersji: Git}
+Git pozwala na monitorowanie zmian oraz zarządzanie historią w kodzie źródłowym.
+
+\subsection{Repozytorium zdalne: Github}
+Github to zdalne repozytorium w pełni zintegrowane z Git. Zostało użyte do bezpiecznego przechowywania projektu oraz umożliwienia nadzoru nad postępem prac.
+
+
+\chapter{Specyfikacja zewnętrzna systemu}
+\label{ch:04-specyfikacja-zewnetrzna-systemu}
+
+
+
+\chapter{Specyfikacja wewnętrzna systemu}
+\label{ch:05-specyfikacja-wewnetrzna-systemu}
+
+
+
+\chapter{Testy i analiza działania systemu}
+\label{ch:06-testy-i-analiza-dzialania-systemu}
+
+
+
+\chapter{Podsumowanie i wnioski}
+\label{ch:07-podsumowanie-i-wnioski}
+
+% \section{Opis narzędzi}
+% \subsubsection{Język: C\#} 
+%  C\# został wybrany ze względu na szerokie zastosowanie w tworzeniu aplikacji desktopowych oraz możliwości wykorzystania programowania obiektowego.
+% Dodatkowo jego kompatybilność z platformą .NET 8.0 umożliwia działanie na różnych systemach operacyjnych.
+% \subsection{OpenGL}
+% OpenGL, czyli wieloplatformowy Interfejs programowania aplikacji (tzw. \textit{API}) został wybrany, ponieważ pozwala na bezpośrednie zarządzanie kartą graficzną. Dodatkowo większość współczesnych kart graficznych wspiera interfejs \textbf{OpenGL} [6]. Biblioteka \textbf{OpenTK} umożliwia używanie \textbf{OpenGL} w \textbf{C\#}.
+% \subsubsection{Biblioteki:}
+% \begin{itemize}
+% \item \textbf{OpenTK 4.8.2 (Open Toolkit):} zapewnia zestaw szybkich połączeń między C\#, a OpenGL. Dodatkowo biblioteka udostępnia pakiet matematyczny, system okienkowy oraz prostą obsługę danych wejściowych. OpenTK nie jest silnikiem gry.
+%  \item \textbf{SimplexNoise 2.0.0 (Autor: WardBenjamin):} zapewnia funkcje generujące szum Simplex w wymiarach 1D, 2D oraz z3D. zwracająć 8 bitową dodatnią liczbę(od  0 do 255).
+%  \item \textbf{StbImageSharp 2.30.15:} port biblioteki stb\_image.h, która jest szybkim rozwiązaniem do ładowania obrazów różnych formatów.
+% \end{itemize}
+% \subsubsection{System kontroli wersji: Git}
+% \textbf{Git} pozwala na monitorowanie zmian w kodzie źródłowym.
+% \subsubsection{Repozytorium zdalne: Github}
+% \textbf{Github} to to zdalne repozytorium w pełni zitegrowane z \textbf{Git}. Zostało użyte aby nie stracić kodu źródłowego podczas pracy w przypadku ewentulanej awarii komputera.
+
+% \section{Metodyka pracy - kroki realizacji projektu}
+% \subsubsection{Analiza wymagań:}
+% \begin{itemize}
+% \item Analiza proceduralnej generacji w kontekście tworzenia świata gry.
+% \item Stworzenie listy funkcjonalności aplikacji.
+% \item Wybór technologii i narzędzi.
+% \item Sworzenie diagramu UML przedstawiającego główne komponenty systemu.
+% \subsubsection{Implementacja funkcji podstawowych:}
+% \item Narysowanie pierwszego kwadratu z 2 trójkątków, będącego podstawowym elementem do rysowania.
+% \item Dodanie do aplikacji kamery dla świata 3D oraz umożliwienie ruchu kamery.
+% \item Zaiplementowanie i narysowanie uniwersalnej klasy bloku oraz dodanie pierwszych tekstur.
+% \item Połączenie bloków w większe grupy (tzw. \textit{chunk}) oraz optymalizacja rysowania niewidocznych ścian, aby zwiększyć wydajność.
+% \item Wykorzystując grupy bloków rysowanie skończonego świata.
+% \item Implementacja proceduralnej generacji świata gry oraz dodanie nowych rodzajów bloków.
+% \subsubsection{Implementacja funkcji zaawansowanych:}
+% \item Zmiana rozmiaru świata na nieograniczony oraz dodanie ograniczenia rysowania tylko bloków wokół kamery.
+% \item Dodanie różnych biomów, aby zwiększyć różnorodność terenu.
+% \item Zparametryzowanie procesu generacji świata przez algorytm oraz dodanie możliwości zmiany tych parametrów przez użytkownika.
+% \subsubsection{Optymalizacja:}
+% \item Poprawienie komunikacji między wątkami generującymi świat, a wątkiem głównym.
+% \item Optymalizacja generacji nowych grup bloków trakcie poruszania się po świecie.
+% \subsubsection{Testowanie:}
+% \item Testowanie prędkości generacji bloków oraz wydajności aplikacji.
+% \item Testowanie możliwości algorytmu, generującego świat proceduralnie, poprzez zmiane parametrów.
+
+% \end{itemize}
+% % TODO
+% \chapter{Specyfikacja zewnętrzna}
+% \label{ch:04}
+
+% \section{Wymagania sprzętowe i programowe}
+% Minimalne wymagania sprzętowe, aby program działał to:
+% \begin{itemize}
+% \item Karta graficzna obsługująca OpenGL 4.0 lub wyższą wersję.
+% \item Zainstalowane środowisko uruchomieniowe .NET 8.0 Runtime.
+% \end{itemize}
+
+% \section{Instalacja}
+% W celu instalacji programu należy pobrać spakowany kod, a następnie go rozpakować na urządzeniu lub sklonować repozytorium ze strony:  \\ \href{https://github.com/NikodemWspanialy/ProceduralWorldGenerationSimulator}{github.com/NikodemWspanialy/ProceduralWorldGenerationSimulator}
+
+% \section{Aktywacja}
+% Aplikacja nie wymaga aktywacji licencyjnej ani klucza produktu. Po zakończeniu instalacji jest gotowa do użycia.
+
+% \section{Sposób obsługi}
+% \subsection{Interfejs użytkownika}
+% Użytkownik porusza się po świecie za pomocą klawiatury:
+% \begin{itemize}
+% \item \textbf{W:} porusza kamerę do przodu.
+% \item \textbf{S:} porusza kamerę do tyłu.
+% \item \textbf{A:} porusza kamerę w lewo.
+% \item \textbf{D:} porusza kamerę w prawo.
+% \item \textbf{Shift:} porusza kamerę w górę.
+% \item \textbf{Spacja:} porusza kamerę w dół.
+% \item \textbf{Esc:} zamknięcie aplikacji.
+% \item \textbf{F:} włączenie / wyłączenie trybu pełnoekranowego.
+% \end{itemize}
+% Użytkownik porusza widokiem kamery za pomocą myszy komputerowej.
+% \subsection{Przykład działania:}
+% \begin{itemize}
+% \item Użytkownik definiuje parametry generacji świata w pliku Hiscraft.dll.config. Na rysunku 4.1 przedstawiono przykładowe ustawienia dla generowanego świata.
+% \begin{figure}[h!]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{config.png}
+%     \caption{Widok domyślnych ustawień}
+% \end{figure}
+% \item Aplikacja zostaje uruchomiona naciśnięciem Hiscraft.exe.
+% \item Użytkownik porusza się po świecie za pomocą klawiatury i myszy, a nowe grupy bloków są generowane w tle.
+
+% Na rysunku 4.2 przedstawiono wygenerowany biom leśny, który jest to najczęściej występujący biom w grze.
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{forest-example.png}
+%     \caption{Biom leśny}
+% \end{figure} 
+
+% Na rysunku 4.3 przedstawiono biom zimowy. Główną różnicą między tym biomem, a leśnym jest pokrycie śniegiem całego terenu łącznie z drzewami, natomiast woda jest przedstawiona w postaci lodu.
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{winter-example.png}
+%     \caption{Biom zimowy}
+% \end{figure} 
+
+% Na rysunku 4.4 przedstawiono biom pustynny. Na tych terenach nie występują drzewa ani dynie, ale można napotkać kaktusy. Krajobraz tego terenu jest ubogi.
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{desert-example.png}
+%     \caption{Biom pustynny}
+% \end{figure} 
+
+% Na rysunku 4.5 przedstawiono biom jesienny. Jest on podobny do biomu leśnego, odrózniają go kolory tektstur ziemi i drzew. 
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{savanna-example.png}
+%     \caption{Biom jesienny}
+% \end{figure} 
+
+% Na rysunku 4.6 pokazano przykład generowania złóż węgla oraz diamentów. Pod powierzchnią ziemi generowane są także inne surowce oraz groty i jaskinie.
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{natural-resources-example.png}
+%     \caption{Wygenerowane złoża pod ziemią}
+% \end{figure} 
+% \end{itemize}
+
+% \section{Bezpieczeństwo}
+% Aplikacja nie przechowuje żadnych danych osobowych użytkownika.
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%
+% %% RYSUNEK Z PLIKU
+% %
+% %\begin{figure}
+% %\centering
+% %\includegraphics[width=0.5\textwidth]{./politechnika_sl_logo_bw_pion_pl.pdf}
+% %\caption{Podpis rysunku zawsze pod rysunkiem.}
+% %\label{fig:etykieta-rysunku}
+% %\end{figure}
+% %Rys. \ref{fig:etykieta-rysunku} przestawia …
+% %%%%%%%%%%%%%%%%%%%%%
+% %
+% %%%%%%%%%%%%%%%%%%%%%
+% %% WIELE RYSUNKÓW 
+% %
+% %\begin{figure}
+% %\centering
+% %\begin{subfigure}{0.4\textwidth}
+% %    \includegraphics[width=\textwidth]{./politechnika_sl_logo_bw_pion_pl.pdf}
+% %    \caption{Lewy górny rysunek.}
+% %    \label{fig:lewy-gorny}
+% %\end{subfigure}
+% %\hfill
+% %\begin{subfigure}{0.4\textwidth}
+% %    \includegraphics[width=\textwidth]{./politechnika_sl_logo_bw_pion_pl.pdf}
+% %    \caption{Prawy górny rysunek.}
+% %    \label{fig:prawy-gorny}
+% %\end{subfigure}
+% %
+% %\begin{subfigure}{0.4\textwidth}
+% %    \includegraphics[width=\textwidth]{./politechnika_sl_logo_bw_pion_pl.pdf}
+% %    \caption{Lewy dolny rysunek.}
+% %    \label{fig:lewy-dolny}
+% %\end{subfigure}
+% %\hfill
+% %\begin{subfigure}{0.4\textwidth}
+% %    \includegraphics[width=\textwidth]{./politechnika_sl_logo_bw_pion_pl.pdf}
+% %    \caption{Prawy dolny rysunek.}
+% %    \label{fig:prawy-dolny}
+% %\end{subfigure}
+% %        
+% %\caption{Wspólny podpis kilku rysunków.}
+% %\label{fig:wiele-rysunkow}
+% %\end{figure}
+% %Rys. \ref{fig:wiele-rysunkow} przestawia wiele ważnych informacji, np. rys. \ref{fig:prawy-gorny} jest na prawo u góry.
+% %%%%%%%%%%%%%%%%%%%%%
+
+
+ 
+% %begin{figure}
+% %\centering
+% %\begin{tikzpicture}
+% %\begin{axis}[
+%  %   y tick label style={
+%   %      /pgf/number format/.cd,
+%     %        fixed,   % po zakomentowaniu os rzednych jest indeksowana wykladniczo
+%       %      fixed zerofill, % 1.0 zamiast 1
+%         %    precision=1,
+%        % /tikz/.cd
+%     %},
+%   %  x tick label style={
+%     %    /pgf/number format/.cd,
+%       %      fixed,
+%         %    fixed zerofill,
+%          %   precision=2,
+%        % /tikz/.cd
+% %    }
+% %]
+% %\addplot [domain=0.0:0.1] {rnd};
+% %\end{axis} 
+% %\end{tikzpicture}
+% %\caption{Podpis rysunku po rysunkiem.}
+% %\label{fig:2}
+% %\end{figure}
+
+
+
+% % TODO
+% \chapter{Specyfikacja wewnętrzna}
+% \label{ch:05}
+
+% \section{Idea programu}
+% Główną ideą jest wykorzystanie proceduralnej generacji świata gry opartej na implementacji funkcji szumu Simplex do stworzenia programu prezentującego trójwymiarowy, nieskończony świat. Algorytm generacji jest w pełni zparametryzowany, co pozwala użytkownikowi kontrolować kształt i wygląd terenu, a także regulować zagęszczenie zasobów naturalnych, takich jak złoża minerałów, zbiorniki wodne, drzewa czy bloki specjalne. 
+
+% Mechanika generowania kształtu terenu opiera się na trzech funkcjach kardynalnych [1]:
+% \begin{itemize}
+% \item Kontynentalność (ang: Continentalness).
+% \item Erozja (ang: Erosion).
+% \item Szczyty i doliny (ang: Peaks and Valleys).
+% \end{itemize}
+% Końcowy kształt terenu jest wartością średnią dla powyższych funkcji.
+% Fragmenty świata są dynamicznie generowane w tle przez osobne wątki, co zapewnia płynność działania aplikacji.
+
+% Do rysowania terenu wykorzystywana jest technologia OpenGL, która umożliwia renderowanie trójwymiarowego świata w czasie rzeczywistym [6]. Każdy kwadrat terenu jest rysowany jako dwa trójkąty, co pozwala na uzyskanie płynnego renderingu i pełnej kontroli nad układem i wyglądem świata.
+
+% W aplikacji wykorzystana jest jedna tekstura (rysunek 5.1), która jest podzielona na 16 rzędów i 16 kolumn, co pozwala na przechowywanie 256 różnych mniejszych obrazów. Każdy rodzaj bloku jest przypisany do określonego fragmentu tej tekstury, co umożliwia zminimalizowanie liczby używanych zasobów graficznych.
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{textura.png}
+%     \caption{Tekstura używana w projekcie}
+% \end{figure}
+
+% \section{Diagram UML}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.75\textwidth]{UML.pdf}
+%     \caption{Diagram klas programu.}
+% \end{figure} 
+% Na rysunku 5.2 został przedstawiony diagram najważniejszych klas oraz ich powiązań. Diagram w oryginalnym rozmiarze ilustrujący strukturę i architekturę systemu znajduje się w załączniku numer 1.
+
+% \section{Architektura}
+% W tej części opisane są najważniejsze klasy projektu. Opis wszystkich klas znajduje się w załączniku numer 2, w pliku wygenerowanym przez \textit{Doxygen}.
+% \subsection{Klasa Game}
+% Klasa \textbf{Game} pełni rolę głównej klasy aplikacji, stanowiąc centralny punkt zarządzania logiką gry. Dziedziczy po klasie \textbf{GameWindow} udostępnionej przez bibliotekę \textbf{OpenTK}. GameWindow zapewnia metody zarządzające podstawowym cyklem życia aplikacji, wykonywanymi w każdej klatce gry. Klasa \textbf{Game} nadpisuje metody odpowiedzialne za różne etapy działania aplikacji.
+% \subsubsection{Funkcjonalność:}
+% \begin{itemize}
+% \item \textbf{OnResize:}
+% \begin{itemize}
+% \item Wywołana automatycznie po zmianie okna aplikacji.
+% \item Odpowiada za ustawienie parametrów przekazywanych do klasy \textbf{Camera}.
+% \end{itemize}
+% \item \textbf{OnLoad:}
+% \begin{itemize}
+% \item Wykonywana przed rozpocęciem procesu renderowania.
+% \item Przygotowywuje pierwsze fragmenty świata do narysowania oraz inicjalizuje obiekty \textbf{Texture} i \textbf{Shader}.
+% \end{itemize}
+% \item \textbf{OnUnload:}
+% \begin{itemize}
+% \item Wykonywana po zakończeniu procesu renderowania.
+% \item Zwalnia zasoby aplikacji.
+% \end{itemize}
+% \item \textbf{OnRenderFrame:}
+% \begin{itemize}
+% \item Odpowiada za renderowanie jednej klatki.
+% \item Przekazuje wartości uniformów do \textbf{Shadera}, odpowiedzialnych za porpawne rysowanie elementów świata.
+% \item Wywołuję metodę redner \textbf{Render} dla każdego obiektu \textbf{Chunk}.
+% \end{itemize}
+% \item \textbf{OnUpdateFrame:}
+% \begin{itemize}
+% \item Odpowiada za aktualizację stanu gry, przetwarzając dane wejściowe (klawiatura, myszka).
+% \item Sprawdza, czy należy wygenerować nowe obiekty \textbf{Chunk}.
+% \end{itemize}
+% \item \textbf{OnKeyDown:}
+% \begin{itemize}
+% \item Obsługuje zdarzenia związane z naciśnięciem dodatkowych klawiszy przez użytkownika:
+% \begin{itemize}
+% \item Esc
+% \item F
+% \end{itemize}
+% \end{itemize}
+% \end{itemize}
+% \subsection{Klasa Chunk}
+% Odpowiada za generowanie, przechowywanie oraz rysowanie bloków w strukturze o określonej przez użytkowika wielkości (domyślnie 16x16x64). Wykorzystuje klasę proceduralnej generacji do definiowania bloków.
+% Klasa jest również odpowiedzialna za optymalizację procesu rendering poprzez usuwanie niewidocznych ścian. 
+% Klasa \textbf{Chunk} przechowuje oraz inicjalizuje obiekty związane z renderowaniem:
+% \begin{itemize}
+% \item \textbf{VAO} (\textit{Vertex Array Object})
+% \item \textbf{VBO} (\textit{Vertex Buffer Object})
+% \item \textbf{VBO} dla textury 
+% \item \textbf{EBO} (\textit{Element Buffer Object} lub \textit{Index Buffer Object})
+% \end{itemize}
+% \textbf{Chunk} posiada dwie publiczne metody wywoływane przez obiekt \textbf{Game}:
+% \begin{itemize}
+% \item \textbf{Render()} - rysuje na scenie wszystkie trójkąty przygotowane w konstruktorze. 
+% \item \textbf{Delete()} - Wywołuje metodę \textbf{Delete()} dla każdego obiektu związanego z renderowaniem. 
+% \end{itemize}
+
+% \subsection{Klasa Block}
+% Klasa \textbf{Block} jest prostą klasą przechowującą informacje o pojedyńczym bloku:
+% \begin{itemize}
+% \item Pozycję, zdefiniowaną jako obiekt typu Vector3.
+% \item Typ, który jest reprezentowany przez typ wyliczeniowy określający rodzaj bloku.
+% \end{itemize}
+% Dodatkowo \textbf{Block} posiada jedną publiczną metodę \textbf{GetFace} przyjmującą jeden argument \textbf{FaceEnum}, będący typem wyliczeniowym określającym wszystkie ściany każdego bloku:
+% \begin{itemize}
+% \item Góra,
+% \item Dół,
+% \item Przód,
+% \item Lewo,
+% \item Prawo,
+% \item Tył.\\ 
+
+% Metoda ta zwraca obiekt klasy \textbf{Face}, czyli dwie kolekcje:
+% \item Wierzchołki konkretnej ściany.
+% \item Punkty, które wskazują wycinek tekstury dopasowany dla tego rodzaju bloku.
+% \end{itemize} 
+
+% \subsection{Klasa ProceduralGeneration}
+% Klasa \textbf{ProceduralGeneration} jest głównym elementem projektu. Definiuje statyczną metodę \textbf{Find}, przyjmujacą trzy argumenty: \textbf{X, Y, Z} - współrzędne, dla których wyliczamy typ bloku bądź definiujemy jego brak.
+% Jednakże przed wykorzystaniem metody \textbf{Find}, należy wywołać metodę \textbf{Prepare}, która przyjmuje dziewięć argumentów, będących parametrami generowania świata przekazanymi przez użytkownika.
+
+% Mechanizm funkcji \textbf{Find} można podzielić na:
+% \begin{itemize} 
+% \item \textbf{Generowanie wysokości terenu} - jest to najbardziej skomplikowany fragment generowania terenu. Zadaniem tej części jest wyliczenie wartości z przedziału od 0 do maksymalnej wysokości terenu przekazanej przez użytkownika (domyślnie 64). 
+% Na podstawie trzech różnie zparametryzowanych generatorów szumu udostępnionych przez bibliotekę \textbf{SimplexNoise}, których wyniki są normalizowane do przedziału od 0 do 1, zostają wyliczone trzy argumenty dla trzech różnych funkcji kardynalnych:
+% \begin{itemize} 
+%     \item \textbf{Kontynentalność}, wplywa na płynne zmiany w ukształtowanie terenu. Generuje lekkie wzniesienia i doliny. Wykres funkcji kardynalnej dla parametru \textit{Continentalness} został przedstawiony na Rysunku 5.3.
+% \begin{figure}[h!]
+% \begin{center}
+% \begin{tikzpicture}
+%     \begin{axis}[
+%         width=10cm, % Szerokość wykresu
+%         height=6cm, % Wysokość wykresu
+%         xlabel={$x$},
+%         ylabel={Continentalness},
+%         grid=both,
+%         minor grid style={gray!25},
+%         major grid style={gray!50},
+%         thick
+%     ]
+%     \addplot[blue, thick, smooth] table {
+%         0.0 0.2
+%         0.05 0.3
+%         0.2 0.45
+%         0.35 0.45
+%         0.5 0.5
+%         0.6 0.7
+%         0.8 0.9
+%         1.0 1.0
+%     };
+%     \end{axis}
+% \end{tikzpicture}
+% \end{center}
+%  \caption{Wykres funkcji kardynalnej dla parametru Kontynentalność.}
+% \end{figure}
+%     \item \textbf{Erozja}, generuje ostre spady i wzniosy.  Wykres funkcji kardynalnej dla parametru \textit{Erosion} został przedstawiony na Rysunku 5.4.
+% \begin{figure}[h!]
+% \begin{center}
+% \begin{tikzpicture}
+%     \begin{axis}[
+%         width=10cm, % Szerokość wykresu
+%         height=6cm, % Wysokość wykresu
+%         xlabel={$x$},
+%         ylabel={Erosion},
+%         grid=both,
+%         minor grid style={gray!25},
+%         major grid style={gray!50},
+%         thick
+%     ]
+%     \addplot[red, thick, smooth] table {
+%         0.0 0.2
+%         0.05 0.95
+%         0.2 0.8
+%         0.35 0.6
+%         0.4 0.65
+%         0.6 0.2
+%         0.7 0.15
+%         0.8 0.13
+%         0.85 0.5
+%         0.9 0.13
+%         0.9 0.05
+%         1.0 0.001
+%     };
+%     \end{axis}
+% \end{tikzpicture}
+% \end{center}
+% \caption{Wykre funkcji kardynalnej dla parametru Erozja.}
+% \end{figure}
+%     \item \textbf{Szczyty i doliny}, ten parametr jest odpowiadzialny za tworzenie ostrzejszych wzniosów. Wykres funkcji kardynalnej dla parametru \textit{Peaks\&Valleys} został przedstawiony na Rysunku 5.5.
+% \begin{figure}[h!]
+% \begin{center}
+% \begin{tikzpicture}
+%     \begin{axis}[
+%         width=10cm, % Szerokość wykresu
+%         height=6cm, % Wysokość wykresu
+%         xlabel={$x$},
+%         ylabel={Peaks},
+%         grid=both,
+%         minor grid style={gray!25},
+%         major grid style={gray!50},
+%         thick
+%     ]
+%     \addplot[green, thick, smooth] table {
+%         0.0 0.0
+%         0.05 0.07
+%         0.1 0.1
+%         0.2 0.15
+%         0.3 0.17
+%         0.5 0.19
+%         0.6 0.35
+%         0.7 0.55
+%         0.75 0.8
+%         0.8 0.83
+%         0.85 0.85
+%         0.9 0.86
+%         1.0 0.9
+%     };
+%     \end{axis}
+% \end{tikzpicture}
+% \end{center}
+% \caption{Wykre funkcji kardynalnej dla parametru Szczyty i doliny.}
+% \end{figure}
+% \end{itemize}
+
+% Korzystając z metody \textbf{GetValue} w klasie funkcji kardynalnych, która przyjmuje wartości z zakresu od 0 do 1 i zwraca wynik również w tym samym zakresie, wyliczamy trzy różne wartości na podstawie wyników generowanych przez szum. Następnie obliczamy średnią z tych trzech wartości. 
+% Ostateczna wartość średnia, należąca do przedziału od 0 do 1, jest mnożona przez maksymalną wysokość świata, uzyskaną od użytkownika. Wynik tego działania reprezentuje wysokość terenu w danej pozycji współrzędnych.
+% wzór:
+% \begin{align*}
+% \text{Height}(x, y) &= \text{MaxHeight} \cdot \frac{1}{3} \big( 
+%     \text{Continentalness}(\text{NoiseC}(x, y)) + \\
+%     &\quad \text{Erosion}(\text{NoiseE}(x, y)) + 
+%     \text{Peaks}(\text{NoisePaV}(x, y))
+% \big)
+% \end{align*}
+% \item \textbf{Generowanie biomu} - generowanie wykorzystuje szum dwuwymiarowy. Znormalizowany wynik określa biom, przyjmując, że:
+% \begin{itemize}
+%     \item \textbf{0-0,2}  - biom pustynny,
+%     \item \textbf{0,2-0,5}  - biom leśny,
+%     \item \textbf{0,5-0,8}  - biom jesienny,
+%     \item \textbf{0,8-1} - biom zimowy.
+% \end{itemize}
+
+% \item \textbf{Generowanie podziemi} - na tym etapie generowane są bloki poniżej poziomu terenu. Z wykorzystaniem szumu trójwymiarowego generowane są złoża naturalne, takie jak:
+% \begin{itemize}
+%     \item Diamenty,
+%     \item Złoto,
+%     \item Węgiel,
+%     \item Żelazo,
+%     \item Czerwony kamień.
+% \end{itemize}
+% Generowane są również jaskinie i komnaty pod ziemią oraz zbiorniki wodne.
+% \item \textbf{Generowanie elementów nad powierzchnią ziemi} - na tym etapie generowane są elementy znajdujące się nad powierzchnią terenu, takie jak:
+% \begin{itemize}
+%     \item \textbf{Drzewa} - na wygląd drzew wpływa biom oraz szum generujący rozmieszczenie roślinności.
+%     \item \textbf{Bloki specjalne} - w tej fazie generowane są różnego rodzaju bloki specjalne.
+% \end{itemize}
+% \end{itemize}
+
+% \subsection{Klasy EBO, VBO, VAO, Shader i Texture} 
+% Te klasy reprezentują podstawowe elementy pracy z grafiką w OpenGL. Każda z nich ma podobną strukturę. Wszystkie zawierają prywatne pole \textbf{ID}, które w konstruktorze klasy jest ustawiane przez funkcje \textbf{OpenGL} (GL). Klasy te wspierają operacje zarządzania zasobami graficznymi na karcie graficznej. 
+
+% Każda z klas posiada następujące metody:
+% \begin{itemize}
+% \item \textbf{Use:} Wiąże obiekt na karcie graficznej, co oznacza, że staje się on aktywnym zasobem używanym przez kolejne operacje graficzne.
+% \item \textbf{Unbind:} Odłącza aktualnie powiązany obiekt, co pozwala zapobiegać niezamierzonym modyfikacjom.
+% \item \textbf{Delete:} Usuwa obiekt z pamięci karty graficznej, co jest kluczowe dla zarządzania zasobami i wydajności.
+% \end{itemize}
+
+% Dodatkowe szczegóły dla każdej klasy:
+% \begin{itemize}
+% \item \textbf{EBO (Element Buffer Object):} Jest używany do przechowywania indeksów wierzchołków. Pozwala to na efektywne rysowanie geometrii poprzez ponowne użycie wierzchołków, co oszczędza pamięć i zwiększa wydajność renderowania.
+% \item \textbf{VBO (Vertex Buffer Object):} Przechowuje dane wierzchołków, takie jak pozycja, kolor czy współrzędne tekstury. Jest kluczowym elementem w przesyłaniu geometrii do karty graficznej.
+% \item \textbf{VAO (Vertex Array Object):} Ułatwia zarządzanie konfiguracją wierzchołków, przechowując informacje o przypisaniach między \textbf{VBO}, a atrybutami w shaderach. Dzięki \textbf{VAO} można łatwo przełączać się między różnymi zestawami danych wierzchołków.
+% \item \textbf{Shader:} Klasa reprezentująca programy shaderów (vertex i fragment shader). W konstruktorze ładuje pliki \texttt{.vert} i \texttt{.frag}, a następnie je kompiluje i linkuje w program shaderowy, który jest używany do określenia, jak dane są przetwarzane na karcie graficznej.
+% \item \textbf{Texture:} Obsługuje tekstury, czyli obrazy, które są nakładane na geometrię w celu dodania szczegółowości i realizmu. W konstruktorze klasa ładuje obraz z teksturami (Rysunek 5.1) i przesyła go do karty graficznej. Obiekt klasy \textbf{Texture} jest przechowywany w klasie \textbf{Game} i jest wiązany na karcie graficznej tylko raz. Usunięcie tekstury następuje dopiero po wymuszeniu zamknięcia aplikacji przez użytkownika, co pozwala na optymalne zarządzanie zasobami graficznymi w trakcie działania programu.
+% \end{itemize}
+
+% \subsection{Klasa WorldConst}
+% \textbf{WorldConst} to statyczna klasa, w której przechowywane są wszystkie parametry:
+% \begin{itemize}
+% \item \textbf{CHUNK\_SIZE}  
+%     Rozmiar jednego obiektu \textbf{chunk} wyrażony jako wartość \( x \times x \). Oznacza liczbę bloków w jednym obiekcie.
+%     \item \textbf{HIGH}  
+%     Maksymalna wysokość świata lub pojedynczego obiektu \textbf{chunk}. Definiuje najwyższy poziom, na którym mogą być generowane bloki.
+%  \item \textbf{WATER}  
+%     Wartość określająca poziom wody w świecie, wpływa na częstotliwość i wielkość generowanyc zbiorników wodnych.
+%  \item \textbf{CHUNK\_OFFSET}  
+% Liczba obiektów \textbf{chunk} renderowanych wokół kamery gracza. Ilość rysowanych obiektów \textbf{Chunk} w każdej klatce można określić wzorem:  
+% \[
+% (2 \cdot CHUNK\_OFFSET + 1)^2
+% \]  
+% Parametr wpływa na widoczność i wydajność renderowania.
+%     \item \textbf{SEED}  
+%     Ziarno generacji świata. Określa początkowy parametr używany w generatorze świata, wpływając na jego unikalność.
+%     \item \textbf{GENERATE\_CHUNK}  
+%     Wartość logiczna określająca, czy \textbf{chunk} powinien być generowany i renderowany po zainicjalizowaniu pierwszych obiektów \textbf{chunk}.
+%     \item \textbf{CONTINENTALNESS}  
+%     Skala wpływu kontynentalności na kształtowanie świata. Wartość wpływa na tworzenie dużych struktur lądowych.
+%     \item \textbf{EROSIONS}  
+%     Skala wpływu erozji na kształtowanie świata. Wartość wpływa na formowanie wzniesień i dolin.
+%     \item \textbf{PEAKS\_AND\_VALLEYS}  
+%     Skala wpływu szczytów i dolin na kształtowanie świata. Parametr wpływa na generowanie ekstremalnych wysokości.
+%     \item \textbf{THREES\_SCALE}  
+%     Skala wpływu generowania drzew. Parametr kontroluje liczbę drzew generowanych w świecie.
+%     \item \textbf{DETAILS\_CONGESTION}  
+%     Skala wpływu na liczbę bloków specjalnych generowanych na powierzchni świata.
+%     \item \textbf{NATURAL\_RESOURCES}  
+%     Skala wpływu na liczbę złóż naturalnych generowanych pod ziemią.
+% \end{itemize}
+% \textbf{WorldConst} posiada jedną metodę statyczną \textbf{ReadConst}, która jest wywoływana zanim początkowe bloki zostaną stworzone.  
+% Jej zadaniem jest wgranie wszystkich parametrów z pliku \textit{app.config}, w którym użytkownik ma możliwość zmiany każdego z nich przed uruchomieniem aplikacji.
+
+% % TODO
+% \chapter{Weryfikacja i walidacja}
+% \label{ch:06}
+
+% Testowanie systemu zostało podzielone na dwa etapy, które miały na celu zbadanie wydajności programu oraz poprawności generowania świata:
+
+% \subsubsection{Testowanie wydajności generowania i rysowania świata}
+% W ramach tego etapu analizowano wydajność systemu w zależności od liczby generowanych obiektów klasy \textbf{Chunk} wokół gracza z przedziało od 0 do 10.  Testy przeprowadzono na różnych konfiguracjach sprzętowych:
+% \begin{itemize}
+% \item Komputer z 8 GB pamięci RAM,
+% \item Komputer z 16 GB pamięci RAM,
+% \item Komputer z 64 GB pamięci RAM.
+% \end{itemize}
+% Badania wykazały, że liczba generowanych bloków miała istotny wpływ na płynność działania aplikacji. Przy większej liczbie bloków, komputery z mniejszą ilością pamięci RAM doświadczały spadków wydajności, co skutkowało niższą liczbą klatek na sekundę (\textit{FPS}) i widocznym opóznieniem działania, co może negatywnie wpływać na odczucia użytkownika. Z kolei na lepiej wyposażonych maszynach system działał płynnie nawet przy większym obciążeniu. Wyniki te pozwoliły na określenie optymalnej liczby renderowanych bloków dla różnych konfiguracji sprzętowych.
+
+% \subsubsection{Testowanie zmienności parametrów świata}
+% W drugim etapie sprawdzano, jak zmiana parametrów wpływa na generowany świat. Testowano różne wartości ekstremalne dla takich parametrów jak:
+% \begin{itemize}
+% \item Wysokość terenu,
+% \item Intensywność kontynetalizmu, erozji i ostrych spadów,
+% \item Zagęszczenie drzew i specjalnych bloków,
+% \item Liczba naturalnych zasobów pod ziemią,
+% \item Wielkość zbiorników wodnych.
+% \end{itemize}
+% Celem było sprawdzenie, czy zmiana parametrów nawet na skrajne wartości nie zmienia spójności realistycznej wygenerowanego terenu. W efekcie udało się potwierdzić, że system jest odporny na nietypowe ustawienia, a wygenerowane światy oddzwierciedlają realne krajobrazy.
+
+% % TODO
+% \chapter{Podsumowanie i wnioski}
+% W trakcie realizacji pracy udało się osiągnąć wszystkie postawione cele oraz spełnić zdefiniowane wymagania funkcjonalne i niefunkcjonalne. Mechanizm generowania proceduralnego został pomyślnie zaimplementowany, a świat gry generowany jest w sposób spójny, różnorodny i ciekawy.  Proces generowania terenu, podziemi, biomów oraz elementów nad powierzchnią ziemi (takich jak drzewa czy specjalne bloki) przebiega poprawnie i umożliwia użytkownikowi personalizację poprzez modyfikację parametrów w pliku konfiguracyjnym. Udało się zoptymalizować rysowanie świata, aby użytkownik mógł płynnie korzystać z programu.
+
+% \subsubsection{Kierunki ewentualnych dalszych prac:}
+% \begin{itemize}
+% \item \textbf{Wprowadzenie fizyki:} Implementacja fizyki gry, który umożliwi bardziej naturalne poruszanie się postaci w świecie gry. Wprowadzenie interakcji z blokami, takich jak niszczenie, przesuwanie, kolidowanie i specjalne interakcję dla różnych typów bloków.
+% \item  \textbf{Rozszerzenie algorytmu proceduralnego generowania świata:} Udoskonalenie algorytmu proceduralnego generowania świata, aby mechanizm generował bardziej zróżnicowane struktury terenu.
+% \item \textbf{Wprowadzenie elementów dynamicznych:} Dodanie elementów dynamicznych, takich jak zwierzęta, rośliny i fizyka wody.
+% \item \textbf{Dodanie większej ilości bloków:} Wprowadzenie nowych rodzajów bloków zwiększyło by rożnorodność świata dodatkowo wpłynęłoby na wyjątkowość wygenerowanych terenów.
+% \item \textbf{Możliwość zapisania zmian na świecie dokonanych przez użytkownika:} Implementacja możliwości zapisu stanu świata, pozwoliłaby użytkownikowi na kontunuowanie rozgrywki w poźniejszym czasie.
+% \item \textbf{Zotymalizowanie generowania i rysowania świata:} Dalsza optymalizacja kodu odpowiedzialnego za przygotowanie elemtów do rysowania oraz praca nad przyśpieszeniem generowania nowego terenu w celu poprawieniu płynności aplikacji. 
+% \end{itemize}
+
+% \subsubsection{Wnioski}
+
+% Implementacja proceduralnej generacji świata gry umożliwia szybkie tworzenie nieskończonych, zróżnicowanych światów i poziomów w grach. Wraz z postępem technologicznym, mechanizm proceduralnej generacji staje się coraz bardziej zaawansowany, wprowadzając nowe technologie, które pozwalają na tworzenie bardziej realistycznych struktur. Jest to kluczowa technika w nowoczesnej branży gier komputerowych, oferująca praktycznie nieograniczone możliwości dla twórców gier. Dodatkowo obecny rozwój sztucznej inteligencji wpływa również na branżę gier, która jest coraz częściej wykorzystywana do proceduralnej generacji świata gry. Firma \textit{Google} 4 grudnia 2024 udostępniła model \textit{Genie 2}, który potrafi sam generować świat gry 3D [14].
+
+% Podczas realizacji pracy napotkano kilka wyzwań związanych z optymalizowaniem procesu generowania świata. Jednym z głównych problemów było zapewnienie płynności generacji w czasie rzeczywistym, co udało mi się rozwiązać poprzez zastosowanie wielowątkowości. Dodatkowo, trudnością okazało się zaimplementowanie trójwymiarowego świata i jego odpowiednie przedstawienie na dwuwymiarowym ekranie, co wymagało uwzględnienia wielu aspektów związanych z renderowaniem.
+
+% Mimo tych trudności, projekt stanowi udaną implementację wszystkich założeń i w pełni realizuje temat pracy. Stworzony świat jest zróżnicowany, a dzięki możliwości zmiany parametrów generacji, program staje się atrakcyjny dla użytkownika. Dzięki temu użytkownik ma możliwość tworzenia własnych, unikalnych światów, co czyni cały projekt ciekawym i interaktywnym.
+
+\backmatter
+
+\newpage 
+
+\chapter{Bibliografia}
+ \textit{[1]} Grzegorz Góralski \textit{Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych} [online] \url{https://ggoralski.github.io/proba_mdbook/print.html#wst%C4%99p-do-filogenetyki-molekularnej-i-tworzenia-drzew-filogenetycznych}, data dostępu: 09.01.2026.\\
+\textit{[2] PWN Encyklopedia} [online]  \url{https://encyklopedia.pwn.pl/haslo/filogeneza;3900970.html}, data dostępu: 09.01.2026. \\
+\textit{[3]} Krzysztof Spalik, Marcin Piwczyński \textit{Rekonstrukcja filogenezy i wnioskowanie filogenetyczne w badaniach ewolucyjnych} [artykuł] KOSMOS, Problemy Nauk Biologicznych,
+t. 58, nr 3–4, 2009, s. 485–498.\\
+
+% \textit{[4]} Julian Togelius, Georgios N. Yannakakis, Kenneth O. Stanley, Cameron Browne  \textit{Search-Based Procedural Content Generation} [Artykuł]  EvoApplications 2010\\
+%  \textit{[5]} Stefan Gustavson. \textit{Simplex noise demystified} [Artykuł] Linkopings Universitetet, 2005.\\
+% \textit{[6] OpenGL dokumentacja} [online] \url{https://www.khronos.org/opengl}, data dostępu: 20.11.2024.\\
+%  \textit{[7]} Roland van der Linden, Ricardo Lopes, Rafael Bidarra \textit{Procedural Generation of Dungeons} [Artykuł] IEEE Transactions on Computational Intelligence and AI in Games.\\
+%  \textit{[8] Noises} [online] \url{https://www.softdb.com/blog/what-is-white-noise/}, data dostępu: 20.11.2024.\\
+%  \textit{[9]} Benoit B. Mandelbrot, John W. Van Ness \textit{Fractional Brownian Motions, Fractional Noises and Applications} [Artykuł] SIAM Review.\\
+% \textit{[10]} M. Awiszus, F. Schubert, B. Rosenhahn \textit{World-GAN: a Generative Model for Minecraft Worlds} [Artykuł] 2021 IEEE Conference on Games.\\
+% \textit{[11] Most popular PC games by monthly active users} [online] \url{https://newzoo.com/resources/rankings/top-20-pc-games}, data dostępu: 20.11.2024.\\
+%  \textit{[12] Value Noise} [online] \url{https://docs.unity3d.com/Packages/com.unity.visualeffectgraph@10.7/manual/Operator-ValueNoise.html}, data dostępu: 20.11.2024.\\
+% \textit{[13] Tanya Short, Tarn Adams} [książka] \textit{Procedural Generation in Game Design}, A K Peters/CRC Press , 2017. \\
+% \textit{[14] Genie 2} [online] \url{https://deepmind.google/discover/blog/genie-2-a-large-scale-foundation-world-model/}, data dostępu: 4.12.2024.\\
+\begin{appendices}
+
+\chapter{Źródła}
+
+\subsubsection \textit{[1]} Georgia Tech Biological Sciences \textit{Phylogenetic Trees} [online]  \url{https://organismalbio.biosci.gatech.edu/biodiversity/phylogenetic-trees/}, data dostępu: 09.01.2026.
+\subsubsection \textit{[2]} National Center for Biotechnology Information [online]  \url{https://www.ncbi.nlm.nih.gov/guide/data-software/}, data dostępu: 09.01.2026.
+
+\chapter{Załączniki}
+
+% [1] Diagram UML 
+
+% [2] Dokumentacja wygenerowana przez Doxygen 
+
+% [3] Film przedstawiający działanie programu
+
+\chapter{Lista dodatkowych plików uzupełniających tekst pracy} 
+
+W systemie do pracy dołączono dodatkowe pliki zawierające:
+% \begin{itemize}
+% \item źródła programu
+% \end{itemize}
+\listoffigures
+\addcontentsline{toc}{chapter}{Spis rysunków}
+\end{appendices}
+\end{document}
+
