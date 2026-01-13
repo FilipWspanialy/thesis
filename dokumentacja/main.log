@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.11.20)  11 JAN 2026 20:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.11.20)  11 JAN 2026 20:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/filip/Downloads/dokumentacja/dokumentacja/main.tex
-(c:/Users/filip/Downloads/dokumentacja/dokumentacja/main.tex
+**d:/source/thesis/dokumentacja/main.tex
+(d:/source/thesis/dokumentacja/main.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-10-24>
 (C:\Users\filip\AppData\Local\Programs\MiKTeX\tex/latex/base\book.cls
@@ -1248,7 +1248,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmss on input line 41
  (C:\Users\filip\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-<politechnika_sl_logo_bw_pion_pl.pdf, id=138, 179.67125pt x 230.8625pt>
+<politechnika_sl_logo_bw_pion_pl.pdf, id=186, 179.67125pt x 230.8625pt>
 File: politechnika_sl_logo_bw_pion_pl.pdf Graphic file (type pdf)
 <use politechnika_sl_logo_bw_pion_pl.pdf>
 Package pdftex.def Info: politechnika_sl_logo_bw_pion_pl.pdf  used on input line 416.
@@ -1323,7 +1323,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2]
 Rozdzia\l  2.
-<drzewo_filo.png, id=222, 428.60126pt x 248.93pt>
+<drzewo_filo.png, id=282, 428.60126pt x 248.93pt>
 File: drzewo_filo.png Graphic file (type png)
 <use drzewo_filo.png>
 Package pdftex.def Info: drzewo_filo.png  used on input line 575.
@@ -1331,12 +1331,12 @@ Package pdftex.def Info: drzewo_filo.png  used on input line 575.
 [3
 
  <./drzewo_filo.png>]
-<sekwencja_bialkowa.png, id=229, 1185.67969pt x 142.28156pt>
+<sekwencja_bialkowa.png, id=289, 1185.67969pt x 142.28156pt>
 File: sekwencja_bialkowa.png Graphic file (type png)
 <use sekwencja_bialkowa.png>
 Package pdftex.def Info: sekwencja_bialkowa.png  used on input line 587.
 (pdftex.def)             Requested size: 455.24411pt x 54.62984pt.
-<alligment.png, id=231, 1239.88219pt x 445.665pt>
+<alligment.png, id=291, 1239.88219pt x 445.665pt>
 File: alligment.png Graphic file (type png)
 <use alligment.png>
 Package pdftex.def Info: alligment.png  used on input line 601.
@@ -1431,6 +1431,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 ]
 Rozdzia\l  6.
+
+Overfull \hbox (0.13246pt too wide) in paragraph at lines 745--745
+[]\T1/lmr/bx/n/17.28 Testy dla se-kwen-cji nu-kle-oty-do-wych z bazy NCBI 
+ []
+
 [15]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1454,11 +1459,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [18
 
 ]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1299.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1319.
  (C:\Users\filip\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 1299--1303
+Underfull \hbox (badness 10000) in paragraph at lines 1319--1323
 
  []
 
@@ -1516,23 +1521,23 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-10-24>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 06B05001DFAB24FF56E42D7B14FBAED9;6339.
+(rerunfilecheck)             Checksum: 77B330BE314ADC6858B39B395F9C5FCD;8648.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44760 strings out of 467870
- 991768 string characters out of 5418354
- 1816871 words of memory out of 5000000
- 72864 multiletter control sequences out of 15000+600000
+ 44784 strings out of 467870
+ 991804 string characters out of 5418354
+ 1817871 words of memory out of 5000000
+ 72876 multiletter control sequences out of 15000+600000
  702999 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,104p,1922b,2439s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,104p,1901b,2439s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/filip/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/filip/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/filip/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/filip/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/filip/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/filip/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/filip/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on main.pdf (35 pages, 327730 bytes).
+Output written on main.pdf (35 pages, 336778 bytes).
 PDF statistics:
- 416 PDF objects out of 1000 (max. 8388607)
- 82 named destinations out of 1000 (max. 500000)
- 297 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 478 PDF objects out of 1000 (max. 8388607)
+ 94 named destinations out of 1000 (max. 500000)
+ 393 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -31,8 +31,20 @@
 \contentsline {subsection}{\numberline {3.5.5}System kontroli wersji: Git}{10}{subsection.3.5.5}%
 \contentsline {subsection}{\numberline {3.5.6}Repozytorium zdalne: Github}{10}{subsection.3.5.6}%
 \contentsline {chapter}{\numberline {4}Specyfikacja zewnętrzna systemu}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Wymagania sprzętowe i programowe}{11}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Instalacja}{11}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Instrukcja obsługi}{11}{section.4.3}%
 \contentsline {chapter}{\numberline {5}Specyfikacja wewnętrzna systemu}{13}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Idea systemu}{13}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Wymagania funkcjonalne}{13}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Architektura ogólna systemu}{13}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Opis najważniejszych modułów systemu}{13}{section.5.4}%
 \contentsline {chapter}{\numberline {6}Testy i analiza działania systemu}{15}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Testy dla sekwencji białek z bazy NCBI}{15}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Testy dla sekwencji nukleotydowych z bazy NCBI}{15}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Analiza wyników}{15}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Analiza działania systemu}{15}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Potencjalny rozwój systemu}{15}{section.6.5}%
 \contentsline {chapter}{\numberline {7}Podsumowanie i wnioski}{17}{chapter.7}%
 \contentsline {chapter}{Bibliografia}{19}{chapter*.12}%
 \contentsline {chapter}{Źródła}{23}{appendix*.13}%

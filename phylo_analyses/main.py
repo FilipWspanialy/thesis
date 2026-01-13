@@ -1,4 +1,5 @@
 
+from email import header
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 import customtkinter as ctk
@@ -11,7 +12,6 @@ import threading
 from datetime import datetime
 import platform
 
-# CTK
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
 
@@ -72,9 +72,13 @@ class PhylogenyApp:
 
         def extract_short_label(header: str) -> str:
             if "[" in header and "]" in header:
-                species = header.split("[", 1)[1].split("]", 1)[0]
-                return species.strip()
-            return header.split()[0]
+                return header.split("[", 1)[1].split("]", 1)[0].strip()
+            
+            parts = header.split()
+            if len(parts) >= 3:
+                return f"{parts[1]} {parts[2]}"
+    
+            return header
 
         mapping = {}
         with open(input_fasta) as fin, open(output_fasta, "w") as fout:
@@ -174,7 +178,8 @@ class PhylogenyApp:
     def run_mafft(self, input_fasta, output_alignment):
 
         wsl_input = self.win_path_to_wsl(str(input_fasta))
-        cmd = ["wsl", "mafft", "--quiet", "--thread", "4", "--auto", wsl_input]
+        # cmd = ["wsl", "mafft", "--quiet", "--thread", "4", "--auto", wsl_input]
+        cmd = ["wsl", "mafft", "--quiet", "--thread", "2", "--auto", wsl_input]
 
         self.log(f"[MAFFT] Running: {' '.join(cmd)}")
         
